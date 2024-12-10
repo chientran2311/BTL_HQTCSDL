@@ -91,6 +91,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(124, 42);
             this.guna2Button1.TabIndex = 3;
             this.guna2Button1.Text = "Login now";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click_1);
             // 
             // guna2TextBox1
             // 
@@ -174,10 +175,7 @@
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2PictureBox1.BorderRadius = 10;
+            this.guna2PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2PictureBox1.Image = global::market_management.Properties.Resources.Very_good_works_are_waiting_for_you_Login_Now___;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(0, 0);

@@ -31,5 +31,11 @@ namespace market_management
         {
 
         }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            dashboard dashboardf = new dashboard();
+            dashboardf.Show();
+        }
     }
 }
