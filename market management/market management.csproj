@@ -76,6 +76,7 @@
     <Compile Include="login2.Designer.cs">
       <DependentUpon>login2.cs</DependentUpon>
     </Compile>
+    <Compile Include="mdiProperties.cs" />
     <Compile Include="product.cs">
       <SubType>Form</SubType>
     </Compile>

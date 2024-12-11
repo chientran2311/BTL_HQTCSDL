@@ -50,6 +50,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "formDash";
             this.Text = "formDash";
+            this.Load += new System.EventHandler(this.formDash_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

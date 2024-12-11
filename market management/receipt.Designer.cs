@@ -50,6 +50,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "receipt";
             this.Text = "receipt";
+            this.Load += new System.EventHandler(this.receipt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

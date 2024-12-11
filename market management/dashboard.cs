@@ -22,8 +22,13 @@ namespace market_management
         public dashboard()
         {
             InitializeComponent();
+            mdiProp(); 
         }
-
+        private void mdiProp()
+        {
+            this.SetBevel(false);
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.FromArgb(232,232,232);
+        }
         private void dashboard_Load(object sender, EventArgs e)
         {
 

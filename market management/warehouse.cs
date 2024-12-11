@@ -16,5 +16,10 @@ namespace market_management
         {
             InitializeComponent();
         }
+
+        private void warehouse_Load(object sender, EventArgs e)
+        {
+            this.ControlBox = false;
+        }
     }
 }

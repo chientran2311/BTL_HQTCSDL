@@ -16,5 +16,10 @@ namespace market_management
         {
             InitializeComponent();
         }
+
+        private void employee_Load(object sender, EventArgs e)
+        {
+            this.ControlBox = false;
+        }
     }
 }

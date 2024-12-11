@@ -16,5 +16,10 @@ namespace market_management
         {
             InitializeComponent();
         }
+
+        private void formDash_Load(object sender, EventArgs e)
+        {
+            this.ControlBox = false;
+        }
     }
 }
