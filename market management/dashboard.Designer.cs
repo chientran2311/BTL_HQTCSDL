@@ -31,25 +31,24 @@
             this.components = new System.ComponentModel.Container();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.hide = new Guna.UI2.WinForms.Guna2PictureBox();
             this.slidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.Dashboard_btn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
+            this.signout = new Guna.UI2.WinForms.Guna2Button();
             this.slidebarTransition = new System.Windows.Forms.Timer(this.components);
+            this.sale_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.receipt_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.product_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.warehouse_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.employee_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.hide = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hide)).BeginInit();
             this.slidebar.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
@@ -58,6 +57,7 @@
             this.guna2Panel6.SuspendLayout();
             this.guna2Panel8.SuspendLayout();
             this.guna2Panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hide)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -81,18 +81,6 @@
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 29);
             this.guna2ControlBox1.TabIndex = 2;
             // 
-            // hide
-            // 
-            this.hide.Image = global::market_management.Properties.Resources.menu1;
-            this.hide.ImageRotate = 0F;
-            this.hide.Location = new System.Drawing.Point(12, 5);
-            this.hide.Name = "hide";
-            this.hide.Size = new System.Drawing.Size(32, 35);
-            this.hide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.hide.TabIndex = 1;
-            this.hide.TabStop = false;
-            this.hide.Click += new System.EventHandler(this.hide_Click);
-            // 
             // slidebar
             // 
             this.slidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -112,194 +100,212 @@
             // 
             // guna2Panel2
             // 
-            this.guna2Panel2.Controls.Add(this.guna2Button1);
+            this.guna2Panel2.Controls.Add(this.Dashboard_btn);
             this.guna2Panel2.Location = new System.Drawing.Point(3, 3);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(197, 60);
             this.guna2Panel2.TabIndex = 3;
             // 
-            // guna2Button1
+            // Dashboard_btn
             // 
-            this.guna2Button1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button1.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button1.TabIndex = 2;
-            this.guna2Button1.Text = "Dashboard";
+            this.Dashboard_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.Dashboard_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Dashboard_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Dashboard_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Dashboard_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Dashboard_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Dashboard_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.Dashboard_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dashboard_btn.ForeColor = System.Drawing.Color.White;
+            this.Dashboard_btn.Location = new System.Drawing.Point(0, 0);
+            this.Dashboard_btn.Name = "Dashboard_btn";
+            this.Dashboard_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Dashboard_btn.Size = new System.Drawing.Size(197, 60);
+            this.Dashboard_btn.TabIndex = 2;
+            this.Dashboard_btn.Text = "Dashboard";
+            this.Dashboard_btn.Click += new System.EventHandler(this.Dashboard_btn_Click);
             // 
             // guna2Panel3
             // 
-            this.guna2Panel3.Controls.Add(this.guna2Button2);
+            this.guna2Panel3.Controls.Add(this.sale_btn);
             this.guna2Panel3.Location = new System.Drawing.Point(3, 69);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel3.TabIndex = 4;
             // 
-            // guna2Button2
-            // 
-            this.guna2Button2.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Image = global::market_management.Properties.Resources.shopping_cart;
-            this.guna2Button2.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.guna2Button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button2.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button2.TabIndex = 2;
-            this.guna2Button2.Text = "Quản lý bán hàng";
-            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click_1);
-            // 
             // guna2Panel7
             // 
-            this.guna2Panel7.Controls.Add(this.guna2Button6);
+            this.guna2Panel7.Controls.Add(this.receipt_btn);
             this.guna2Panel7.Location = new System.Drawing.Point(3, 143);
             this.guna2Panel7.Name = "guna2Panel7";
             this.guna2Panel7.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel7.TabIndex = 5;
             // 
-            // guna2Button6
-            // 
-            this.guna2Button6.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button6.ForeColor = System.Drawing.Color.White;
-            this.guna2Button6.Image = global::market_management.Properties.Resources.bill;
-            this.guna2Button6.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button6.Name = "guna2Button6";
-            this.guna2Button6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.guna2Button6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button6.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button6.TabIndex = 2;
-            this.guna2Button6.Text = "Quản lý đơn hàng";
-            // 
             // guna2Panel4
             // 
-            this.guna2Panel4.Controls.Add(this.guna2Button3);
+            this.guna2Panel4.Controls.Add(this.product_btn);
             this.guna2Panel4.Location = new System.Drawing.Point(3, 217);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel4.TabIndex = 5;
             // 
-            // guna2Button3
-            // 
-            this.guna2Button3.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
-            this.guna2Button3.Image = global::market_management.Properties.Resources.products;
-            this.guna2Button3.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.guna2Button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button3.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button3.TabIndex = 2;
-            this.guna2Button3.Text = "Quản lý sản phẩm";
-            // 
             // guna2Panel6
             // 
-            this.guna2Panel6.Controls.Add(this.guna2Button5);
+            this.guna2Panel6.Controls.Add(this.warehouse_btn);
             this.guna2Panel6.Location = new System.Drawing.Point(3, 291);
             this.guna2Panel6.Name = "guna2Panel6";
             this.guna2Panel6.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel6.TabIndex = 5;
             // 
-            // guna2Button5
-            // 
-            this.guna2Button5.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.White;
-            this.guna2Button5.Image = global::market_management.Properties.Resources.warehouse;
-            this.guna2Button5.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.guna2Button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button5.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button5.TabIndex = 2;
-            this.guna2Button5.Text = "Quản lý kho hàng";
-            // 
             // guna2Panel8
             // 
-            this.guna2Panel8.Controls.Add(this.guna2Button7);
+            this.guna2Panel8.Controls.Add(this.employee_btn);
             this.guna2Panel8.Location = new System.Drawing.Point(3, 365);
             this.guna2Panel8.Name = "guna2Panel8";
             this.guna2Panel8.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel8.TabIndex = 6;
             // 
-            // guna2Button7
-            // 
-            this.guna2Button7.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button7.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button7.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button7.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button7.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button7.ForeColor = System.Drawing.Color.White;
-            this.guna2Button7.Image = global::market_management.Properties.Resources.employee;
-            this.guna2Button7.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button7.Name = "guna2Button7";
-            this.guna2Button7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.guna2Button7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button7.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button7.TabIndex = 2;
-            this.guna2Button7.Text = "Quản lý nhân viên";
-            // 
             // guna2Panel9
             // 
-            this.guna2Panel9.Controls.Add(this.guna2Button8);
+            this.guna2Panel9.Controls.Add(this.signout);
             this.guna2Panel9.Location = new System.Drawing.Point(3, 439);
             this.guna2Panel9.Name = "guna2Panel9";
             this.guna2Panel9.Size = new System.Drawing.Size(197, 68);
             this.guna2Panel9.TabIndex = 7;
             // 
-            // guna2Button8
+            // signout
             // 
-            this.guna2Button8.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.guna2Button8.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button8.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button8.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
-            this.guna2Button8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button8.ForeColor = System.Drawing.Color.White;
-            this.guna2Button8.Location = new System.Drawing.Point(0, 8);
-            this.guna2Button8.Name = "guna2Button8";
-            this.guna2Button8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.guna2Button8.Size = new System.Drawing.Size(197, 60);
-            this.guna2Button8.TabIndex = 2;
-            this.guna2Button8.Text = "Đăng xuất";
+            this.signout.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.signout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.signout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.signout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.signout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.signout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.signout.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signout.ForeColor = System.Drawing.Color.White;
+            this.signout.Location = new System.Drawing.Point(0, 8);
+            this.signout.Name = "signout";
+            this.signout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.signout.Size = new System.Drawing.Size(197, 60);
+            this.signout.TabIndex = 2;
+            this.signout.Text = "Đăng xuất";
+            this.signout.Click += new System.EventHandler(this.signout_Click);
             // 
             // slidebarTransition
             // 
             this.slidebarTransition.Interval = 10;
+            // 
+            // sale_btn
+            // 
+            this.sale_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.sale_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sale_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sale_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sale_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sale_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.sale_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sale_btn.ForeColor = System.Drawing.Color.White;
+            this.sale_btn.Image = global::market_management.Properties.Resources.shopping_cart;
+            this.sale_btn.Location = new System.Drawing.Point(0, 8);
+            this.sale_btn.Name = "sale_btn";
+            this.sale_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.sale_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.sale_btn.Size = new System.Drawing.Size(197, 60);
+            this.sale_btn.TabIndex = 2;
+            this.sale_btn.Text = "Quản lý bán hàng";
+            this.sale_btn.Click += new System.EventHandler(this.sale_btn_Click);
+            // 
+            // receipt_btn
+            // 
+            this.receipt_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.receipt_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.receipt_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.receipt_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.receipt_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.receipt_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.receipt_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.receipt_btn.ForeColor = System.Drawing.Color.White;
+            this.receipt_btn.Image = global::market_management.Properties.Resources.bill;
+            this.receipt_btn.Location = new System.Drawing.Point(0, 8);
+            this.receipt_btn.Name = "receipt_btn";
+            this.receipt_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.receipt_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.receipt_btn.Size = new System.Drawing.Size(197, 60);
+            this.receipt_btn.TabIndex = 2;
+            this.receipt_btn.Text = "Quản lý đơn hàng";
+            this.receipt_btn.Click += new System.EventHandler(this.receipt_btn_Click);
+            // 
+            // product_btn
+            // 
+            this.product_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.product_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.product_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.product_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.product_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.product_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.product_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.product_btn.ForeColor = System.Drawing.Color.White;
+            this.product_btn.Image = global::market_management.Properties.Resources.products;
+            this.product_btn.Location = new System.Drawing.Point(0, 8);
+            this.product_btn.Name = "product_btn";
+            this.product_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.product_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.product_btn.Size = new System.Drawing.Size(197, 60);
+            this.product_btn.TabIndex = 2;
+            this.product_btn.Text = "Quản lý sản phẩm";
+            this.product_btn.Click += new System.EventHandler(this.product_btn_Click);
+            // 
+            // warehouse_btn
+            // 
+            this.warehouse_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.warehouse_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.warehouse_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.warehouse_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.warehouse_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.warehouse_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.warehouse_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouse_btn.ForeColor = System.Drawing.Color.White;
+            this.warehouse_btn.Image = global::market_management.Properties.Resources.warehouse;
+            this.warehouse_btn.Location = new System.Drawing.Point(0, 8);
+            this.warehouse_btn.Name = "warehouse_btn";
+            this.warehouse_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.warehouse_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.warehouse_btn.Size = new System.Drawing.Size(197, 60);
+            this.warehouse_btn.TabIndex = 2;
+            this.warehouse_btn.Text = "Quản lý kho hàng";
+            this.warehouse_btn.Click += new System.EventHandler(this.warehouse_btn_Click);
+            // 
+            // employee_btn
+            // 
+            this.employee_btn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.employee_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.employee_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.employee_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.employee_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.employee_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.employee_btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.employee_btn.ForeColor = System.Drawing.Color.White;
+            this.employee_btn.Image = global::market_management.Properties.Resources.employee;
+            this.employee_btn.Location = new System.Drawing.Point(0, 8);
+            this.employee_btn.Name = "employee_btn";
+            this.employee_btn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.employee_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.employee_btn.Size = new System.Drawing.Size(197, 60);
+            this.employee_btn.TabIndex = 2;
+            this.employee_btn.Text = "Quản lý nhân viên";
+            this.employee_btn.Click += new System.EventHandler(this.employee_btn_Click);
+            // 
+            // hide
+            // 
+            this.hide.Image = global::market_management.Properties.Resources.menu1;
+            this.hide.ImageRotate = 0F;
+            this.hide.Location = new System.Drawing.Point(12, 5);
+            this.hide.Name = "hide";
+            this.hide.Size = new System.Drawing.Size(32, 35);
+            this.hide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.hide.TabIndex = 1;
+            this.hide.TabStop = false;
+            this.hide.Click += new System.EventHandler(this.hide_Click);
             // 
             // dashboard
             // 
@@ -309,11 +315,11 @@
             this.Controls.Add(this.slidebar);
             this.Controls.Add(this.guna2Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
             this.Name = "dashboard";
-            this.Text = "Quản lý sản phẩm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.dashboard_Load);
             this.guna2Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hide)).EndInit();
             this.slidebar.ResumeLayout(false);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel3.ResumeLayout(false);
@@ -322,6 +328,7 @@
             this.guna2Panel6.ResumeLayout(false);
             this.guna2Panel8.ResumeLayout(false);
             this.guna2Panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hide)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,19 +340,19 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private System.Windows.Forms.FlowLayoutPanel slidebar;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button Dashboard_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button sale_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button product_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Guna.UI2.WinForms.Guna2Button warehouse_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
-        private Guna.UI2.WinForms.Guna2Button guna2Button6;
+        private Guna.UI2.WinForms.Guna2Button receipt_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
-        private Guna.UI2.WinForms.Guna2Button guna2Button7;
+        private Guna.UI2.WinForms.Guna2Button employee_btn;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel9;
-        private Guna.UI2.WinForms.Guna2Button guna2Button8;
+        private Guna.UI2.WinForms.Guna2Button signout;
         private System.Windows.Forms.Timer slidebarTransition;
     }
 }
