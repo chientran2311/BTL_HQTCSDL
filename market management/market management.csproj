@@ -58,6 +58,12 @@
     <Compile Include="dashboard.Designer.cs">
       <DependentUpon>dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="editDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editDonHang.Designer.cs">
+      <DependentUpon>editDonHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="employee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,12 @@
     <Compile Include="sale.Designer.cs">
       <DependentUpon>sale.cs</DependentUpon>
     </Compile>
+    <Compile Include="salesforemploy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="salesforemploy.Designer.cs">
+      <DependentUpon>salesforemploy.cs</DependentUpon>
+    </Compile>
     <Compile Include="warehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +117,9 @@
     </Compile>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editDonHang.resx">
+      <DependentUpon>editDonHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="employee.resx">
       <DependentUpon>employee.cs</DependentUpon>
@@ -128,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="sale.resx">
       <DependentUpon>sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="salesforemploy.resx">
+      <DependentUpon>salesforemploy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="warehouse.resx">
       <DependentUpon>warehouse.cs</DependentUpon>
@@ -176,4 +194,8 @@
     <None Include="Resources\bill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"
+if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)" "$(TargetPath).locked"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
