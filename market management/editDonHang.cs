@@ -24,9 +24,9 @@ namespace market_management
         // Hoặc bạn có thể tạo các phương thức setter
         public void SetTextBoxValues(string ma, string ten, string thanhTien, string hinhThucThanhToan, string ghiChu, int maDonHang)
         {
-            txtMa.Text = ma;
-            txtTen.Text = ten;
-            txtThanhtien.Text = thanhTien;
+            txtMadonhang.Text = ma;
+
+            TxtThanhtien.Text = thanhTien;
             cb_hinhthucthanhtoan.Text = hinhThucThanhToan;
             txtghichu.Text = ghiChu;
 
@@ -86,45 +86,10 @@ namespace market_management
                 {
                     Sqlcon.Open();
 
-                    // Tải danh sách nhân viên vào ComboBox cb_nhanvien
-                    using (SqlCommand commandNhanVien = new SqlCommand("SELECT maNhanvien, tenNhanvien FROM NhanVien", Sqlcon))
-                    {
-                        using (SqlDataReader reader = commandNhanVien.ExecuteReader())
-                        {
-                            // Dọn sạch dữ liệu cũ
-                            cb_nhanvien.Items.Clear();
-
-                            while (reader.Read())
-                            {
-                                var item = new ComboBoxItem
-                                {
-                                    Value = reader["maNhanvien"].ToString(),
-                                    Text = reader["tenNhanvien"].ToString()
-                                };
-                                cb_nhanvien.Items.Add(item);
-                            }
-                        }
-                    }
+                   
 
                     // Tải danh sách công ty vào ComboBox cb_congty
-                    using (SqlCommand commandCongTy = new SqlCommand("SELECT maCongTy, tenCongTy FROM CongTyGiaoHang", Sqlcon))
-                    {
-                        using (SqlDataReader reader = commandCongTy.ExecuteReader())
-                        {
-                            // Dọn sạch dữ liệu cũ
-                            cb_congty.Items.Clear();
-
-                            while (reader.Read())
-                            {
-                                var item = new ComboBoxItem
-                                {
-                                    Value = reader["maCongTy"].ToString(),
-                                    Text = reader["tenCongTy"].ToString()
-                                };
-                                cb_congty.Items.Add(item);
-                            }
-                        }
-                    }
+                  
 
                     // Tải danh sách hình thức thanh toán vào ComboBox cb_hinhthucthanhtoan
                     using (SqlCommand commandHinhThucThanhToan = new SqlCommand("SELECT DISTINCT hinhThucThanhToan FROM DonHang", Sqlcon))
@@ -143,7 +108,7 @@ namespace market_management
                     }
 
                     // Tải danh sách sản phẩm vào ComboBox cb_sanpham
-               
+
                 }
             }
             catch (Exception ex)
@@ -159,18 +124,18 @@ namespace market_management
             try
             {
                 // Lấy mã đơn hàng từ TextBox txtMa
-                int maDonHang = int.Parse(txtMa.Text); // Đảm bảo txtMa có giá trị hợp lệ
+                int maDonHang = int.Parse(txtMadonhang.Text); // Đảm bảo txtMa có giá trị hợp lệ
 
                 using (SqlConnection Sqlcon = new SqlConnection(strCon))
                 {
                     Sqlcon.Open();
 
-                    // Truy vấn để lấy tên sản phẩm theo mã đơn hàng
+                    // Truy vấn để lấy mã và tên sản phẩm theo mã đơn hàng
                     string query = @"
-                SELECT SP.maSanPham, SP.tenSanPham
-                FROM SanPham SP
-                INNER JOIN SP_DonHang SPD ON SP.maSanPham = SPD.maSanPham
-                WHERE SPD.maDonHang = @MaDonHang";
+            SELECT SP.maSanPham, SP.tenSanPham
+            FROM SanPham SP
+            INNER JOIN SP_DonHang SPD ON SP.maSanPham = SPD.maSanPham
+            WHERE SPD.maDonHang = @MaDonHang";
 
                     using (SqlCommand commandSanPham = new SqlCommand(query, Sqlcon))
                     {
@@ -182,6 +147,7 @@ namespace market_management
                             // Dọn sạch dữ liệu cũ trong ComboBox
                             cb_sanpham.Items.Clear();
 
+                            // Đọc từng sản phẩm từ kết quả truy vấn
                             while (reader.Read())
                             {
                                 var item = new ComboBoxItem
@@ -189,7 +155,20 @@ namespace market_management
                                     Value = reader["maSanPham"].ToString(),
                                     Text = reader["tenSanPham"].ToString()
                                 };
+
+                                // Thêm sản phẩm vào ComboBox
                                 cb_sanpham.Items.Add(item);
+                            }
+
+                            // Kiểm tra nếu có sản phẩm trong ComboBox
+                            if (cb_sanpham.Items.Count > 0)
+                            {
+                                // Chọn sản phẩm đầu tiên trong ComboBox
+                                cb_sanpham.SelectedIndex = 0;
+
+                                // Cập nhật mã sản phẩm vào txtMasanpham khi chọn sản phẩm
+                                ComboBoxItem selectedItem = (ComboBoxItem)cb_sanpham.SelectedItem;
+                                txtMasanpham.Text = selectedItem.Value.ToString();  // Cập nhật mã sản phẩm vào txtMasanpham
                             }
                         }
                     }
@@ -200,6 +179,7 @@ namespace market_management
                 MessageBox.Show("Đã xảy ra lỗi khi tải danh sách sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         public class ComboBoxItem
         {
@@ -231,21 +211,22 @@ namespace market_management
         public void calculator()
         {
             // Check if both fields have valid numeric values
-            float a, b;
+            int a; // Số lượng là kiểu int
+            decimal b, total; // Giá bán và tổng tiền đều là kiểu decimal
 
-            // Try to parse the values from the textboxes
-            if (float.TryParse(txtSoLuong.Text, out a) && float.TryParse(txtgia.Text, out b))
+            // Try to parse the values from the textboxes as int for quantity and decimal for price
+            if (int.TryParse(txtSoLuong.Text, out a) && decimal.TryParse(txtgia.Text, out b))
             {
                 // Calculate the total price
-                float total = a * b;
+                total = a * b; // Tính tổng tiền
 
                 // Update the txtThanhtien with the calculated value
-                txtThanhtien.Text = total.ToString();
+                TxtThanhtien.Text = total.ToString("0.##"); // Hiển thị giá trị với 2 chữ số thập phân (nếu có)
             }
             else
             {
                 // If input is invalid, clear the txtThanhtien or set it to 0
-                txtThanhtien.Text = "0";
+                TxtThanhtien.Text = "0";
             }
         }
 
@@ -258,7 +239,7 @@ namespace market_management
                 string tenSanPham = ((ComboBoxItem)cb_sanpham.SelectedItem).Text;
 
                 // Lấy mã đơn hàng từ TextBox
-                int maDonHang = int.Parse(txtMa.Text);
+                int maDonHang = int.Parse(txtMadonhang.Text);
 
                 // Gọi stored procedure để lấy giá và số lượng
                 LayGiaVaSoLuongSanPham(tenSanPham, maDonHang);
@@ -304,6 +285,138 @@ namespace market_management
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            // Chuỗi kết nối
+            string connectionString = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
+
+            // Lấy các giá trị từ các TextBox, ComboBox, RichTextBox
+            int maDonHang = Convert.ToInt32(txtMadonhang.Text);
+            int maSanPham = Convert.ToInt32(txtMasanpham.Text);
+            int soLuong = Convert.ToInt32(txtSoLuong.Text);
+            string hinhThucThanhToan = cb_hinhthucthanhtoan.SelectedItem.ToString();
+            string ghiChu = txtghichu.Text;
+            long thanhTien = Convert.ToInt64(TxtThanhtien.Text);
+
+            string updateSPDonHangQuery = @"
+        UPDATE SP_DonHang
+        SET soLuong = @soLuong
+        WHERE maDonHang = @maDonHang AND maSanPham = @maSanPham;
+    ";
+
+            string updateDonHangQuery = @"
+        UPDATE DonHang
+        SET hinhThucThanhToan = @hinhThucThanhToan, ghiChu = @ghiChu, thanhTien = @thanhTien
+        WHERE maDonHang = @maDonHang;
+    ";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Cập nhật SP_DonHang
+                    using (SqlCommand cmdSPDonHang = new SqlCommand(updateSPDonHangQuery, conn))
+                    {
+                        cmdSPDonHang.Parameters.AddWithValue("@maDonHang", maDonHang);
+                        cmdSPDonHang.Parameters.AddWithValue("@maSanPham", maSanPham);
+                        cmdSPDonHang.Parameters.AddWithValue("@soLuong", soLuong);
+
+                        int rowsAffectedSP = cmdSPDonHang.ExecuteNonQuery();
+                        if (rowsAffectedSP == 0)
+                        {
+                            MessageBox.Show("Không tìm thấy sản phẩm với mã đơn hàng và sản phẩm đã cho.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    // Cập nhật DonHang
+                    using (SqlCommand cmdDonHang = new SqlCommand(updateDonHangQuery, conn))
+                    {
+                        cmdDonHang.Parameters.AddWithValue("@maDonHang", maDonHang);
+                        cmdDonHang.Parameters.AddWithValue("@hinhThucThanhToan", hinhThucThanhToan);
+                        cmdDonHang.Parameters.AddWithValue("@ghiChu", ghiChu);
+                        cmdDonHang.Parameters.AddWithValue("@thanhTien", thanhTien);
+
+                        int rowsAffectedDH = cmdDonHang.ExecuteNonQuery();
+                        if (rowsAffectedDH == 0)
+                        {
+                            MessageBox.Show("Không tìm thấy đơn hàng với mã đã cho.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    // Hiển thị thông báo thành công
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        private void btnXoahang_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy mã đơn hàng từ TextBox
+                string maDonHang = txtMadonhang.Text;
+
+                // Kiểm tra nếu mã đơn hàng rỗng hoặc null
+                if (string.IsNullOrWhiteSpace(maDonHang))
+                {
+                    MessageBox.Show("Mã đơn hàng không thể trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Xác nhận người dùng có chắc chắn muốn xóa đơn hàng không
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa đơn hàng này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult != DialogResult.Yes)
+                {
+                    return; // Nếu người dùng không chọn Yes, thoát
+                }
+
+                // Chuỗi kết nối với cơ sở dữ liệu
+                string connectionString = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
+
+                // Câu lệnh SQL để xóa đơn hàng
+                string deleteQuery = @"
+            DELETE FROM DonHang
+            WHERE maDonHang = @MaDonHang";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // Mở kết nối với cơ sở dữ liệu
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
+                    {
+                        // Thêm tham số vào câu lệnh SQL
+                        cmd.Parameters.AddWithValue("@MaDonHang", maDonHang);
+
+                        // Thực thi câu lệnh xóa
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Đơn hàng đã được xóa thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy đơn hàng với mã đã nhập.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi xảy ra trong quá trình kết nối và thực thi câu lệnh SQL
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

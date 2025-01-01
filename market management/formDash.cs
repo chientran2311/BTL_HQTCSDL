@@ -27,6 +27,11 @@ namespace market_management
             txtTienBan.Text = null;
             monthlbl.Text = null;
             monthnv.Text = null;
+            txtTop1.Text = null;
+            txtTop2.Text = null;
+            txtTop3.Text = null;
+            txtTienmat.Text = null;
+            txtChuyenKhoan.Text = null;
         }
 
         public void TienhangNhap()
@@ -187,10 +192,13 @@ namespace market_management
                 }
             }
         }
-        public void Topnhanvien()
+        public void TopNhanVien()
         {
             // Chuỗi kết nối với SQL Server
             string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
+
+            // Lấy giá trị tháng từ ComboBox (giả sử cb_month là ComboBox chứa tháng)
+            int thang = Convert.ToInt32(cb_month.SelectedItem); // Chuyển giá trị từ ComboBox thành kiểu int
 
             // Kết nối với cơ sở dữ liệu
             using (SqlConnection connection = new SqlConnection(strCon))
@@ -200,10 +208,13 @@ namespace market_management
                     // Mở kết nối
                     connection.Open();
 
-                    // Tạo một SqlCommand để gọi stored procedure
-                    using (SqlCommand cmd = new SqlCommand("sp_Top_nhanvien", connection))
+                    // Tạo một SqlCommand để gọi stored procedure sp_Top5NhanVien
+                    using (SqlCommand cmd = new SqlCommand("sp_Top5NhanVien", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Thêm tham số cho stored procedure (truyền tháng vào)
+                        cmd.Parameters.AddWithValue("@thang", thang);
 
                         // Tạo một DataAdapter để nhận dữ liệu từ SQL vào DataTable
                         using (SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
@@ -227,6 +238,7 @@ namespace market_management
             }
         }
 
+
         private void guna2HtmlLabel4_Click(object sender, EventArgs e)
         {
 
@@ -237,7 +249,202 @@ namespace market_management
 
         }
 
-       
+        public void Top3sanpham()
+        {
+            // Chuỗi kết nối với SQL Server
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
+
+            // Kết nối với cơ sở dữ liệu
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                try
+                {
+                    // Mở kết nối
+                    connection.Open();
+
+                    // Tạo câu lệnh SQL để thực hiện truy vấn lấy top 3 sản phẩm bán chạy nhất
+                    string query = @"
+                DECLARE @maSanPham INT;
+                DECLARE @soLuongDaBan INT;
+                DECLARE @tenSanPham NVARCHAR(255);
+                DECLARE @thangHienTai INT = DATEPART(MM, GETDATE()); 
+                DECLARE @namHienTai INT = DATEPART(YYYY, GETDATE());  
+
+                DECLARE cur_Sp_Hot CURSOR SCROLL FOR
+                    SELECT TOP 3
+                        SPD.maSanPham, 
+                        SUM(SPD.soLuong) AS soLuongDaBan
+                    FROM SP_DonHang SPD
+                    INNER JOIN DonHang DH ON SPD.maDonHang = DH.maDonHang
+                    WHERE DATEPART(MM, DH.Ngaytaodon) = @thangHienTai
+                    AND DATEPART(YYYY, DH.Ngaytaodon) = @namHienTai
+                    GROUP BY SPD.maSanPham
+                    ORDER BY soLuongDaBan DESC;
+
+                OPEN cur_Sp_Hot;
+                FETCH NEXT FROM cur_Sp_Hot INTO @maSanPham, @soLuongDaBan;
+
+                
+                CREATE TABLE #TopProducts (TenSanPham NVARCHAR(255), MaSanPham INT, SoLuongDaBan INT);
+
+                WHILE @@FETCH_STATUS = 0
+                BEGIN
+                   
+                    SELECT @tenSanPham = tenSanPham 
+                    FROM SanPham 
+                    WHERE maSanPham = @maSanPham;
+
+                   
+                    INSERT INTO #TopProducts (TenSanPham, MaSanPham, SoLuongDaBan)
+                    VALUES (@tenSanPham, @maSanPham, @soLuongDaBan);
+
+                    FETCH NEXT FROM cur_Sp_Hot INTO @maSanPham, @soLuongDaBan;
+                END
+
+                
+                SELECT * FROM #TopProducts;
+
+                
+                DROP TABLE #TopProducts;
+
+                CLOSE cur_Sp_Hot;
+                DEALLOCATE cur_Sp_Hot;
+            ";
+
+                    // Tạo command để thực thi câu truy vấn SQL
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Tạo SqlDataReader để đọc kết quả
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Biến đếm để gán vào các TextBox (txtTop1, txtTop2, txtTop3)
+                            int count = 1;
+
+                            // Đọc từng dòng kết quả
+                            while (reader.Read() && count <= 3)
+                            {
+                                // Lấy Mã sản phẩm và Số lượng đã bán từ kết quả
+                                int maSanPham = reader.GetInt32(1);
+                                int soLuongDaBan = reader.GetInt32(2);
+
+                                // Lấy tên sản phẩm từ cơ sở dữ liệu
+                                string tenSanPham = reader.GetString(0);
+
+                                // Gán giá trị vào các TextBox dựa trên số thứ tự
+                                if (count == 1)
+                                {
+                                    txtTop1.Text = $"Sản phẩm {count}: {tenSanPham} - Mã sản phẩm {maSanPham}, Số lượng bán: {soLuongDaBan}";
+                                }
+                                else if (count == 2)
+                                {
+                                    txtTop2.Text = $"Sản phẩm {count}: {tenSanPham} - Mã sản phẩm {maSanPham}, Số lượng bán: {soLuongDaBan}";
+                                }
+                                else if (count == 3)
+                                {
+                                    txtTop3.Text = $"Sản phẩm {count}: {tenSanPham} - Mã sản phẩm {maSanPham}, Số lượng bán: {soLuongDaBan}";
+                                }
+
+                                // Tăng biến đếm
+                                count++;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show("Lỗi khi kết nối đến cơ sở dữ liệu: " + ex.Message);
+                }
+            }
+        }
+        public void thongkeHinhthuc()
+        {
+            // Chuỗi kết nối với SQL Server
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
+
+            // Kết nối với cơ sở dữ liệu
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                try
+                {
+                    // Mở kết nối
+                    connection.Open();
+
+                    // Tạo câu lệnh SQL để thực thi con trỏ
+                    string query = @"
+                DECLARE @hinhThucThanhToan NVARCHAR(50);
+                DECLARE @soLuongDonHang INT;
+                DECLARE cur_HinhThucThanhToan CURSOR FOR
+                    SELECT DISTINCT hinhThucThanhToan
+                    FROM DonHang
+                    WHERE hinhThucThanhToan IS NOT NULL;
+
+                OPEN cur_HinhThucThanhToan;
+
+                FETCH NEXT FROM cur_HinhThucThanhToan INTO @hinhThucThanhToan;
+
+                -- Lấy số lượng đơn hàng cho mỗi hình thức thanh toán
+                CREATE TABLE #ThongKe (HinhThucThanhToan NVARCHAR(50), SoLuongDonHang INT);
+
+                WHILE @@FETCH_STATUS = 0
+                BEGIN
+                    -- Lấy số lượng đơn hàng cho hình thức thanh toán
+                    SELECT @soLuongDonHang = COUNT(maDonHang)
+                    FROM DonHang
+                    WHERE hinhThucThanhToan = @hinhThucThanhToan;
+
+                    -- Insert vào bảng tạm
+                    INSERT INTO #ThongKe (HinhThucThanhToan, SoLuongDonHang)
+                    VALUES (@hinhThucThanhToan, @soLuongDonHang);
+
+                    FETCH NEXT FROM cur_HinhThucThanhToan INTO @hinhThucThanhToan;
+                END
+
+                -- Trả về kết quả thống kê hình thức thanh toán
+                SELECT * FROM #ThongKe;
+
+                -- Xóa bảng tạm
+                DROP TABLE #ThongKe;
+
+                CLOSE cur_HinhThucThanhToan;
+                DEALLOCATE cur_HinhThucThanhToan;
+            ";
+
+                    // Tạo command để thực thi câu truy vấn SQL
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Tạo SqlDataReader để đọc kết quả
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Đọc từng dòng kết quả từ con trỏ
+                            while (reader.Read())
+                            {
+                                // Lấy hình thức thanh toán và số lượng đơn hàng
+                                string hinhThucThanhToan = reader.GetString(0);
+                                int soLuongDonHang = reader.GetInt32(1);
+
+                                // Gán kết quả vào các TextBox
+                                if (hinhThucThanhToan == "Tiền mặt")
+                                {
+                                    txtTienmat.Text = $"Hình thức thanh toán: Tiền mặt, Số đơn hàng: {soLuongDonHang}";
+                                }
+                                else if (hinhThucThanhToan == "Chuyển khoản")
+                                {
+                                    txtChuyenKhoan.Text = $"Hình thức thanh toán: Chuyển khoản, Số đơn hàng: {soLuongDonHang}";
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show("Lỗi khi kết nối đến cơ sở dữ liệu: " + ex.Message);
+                }
+            }
+        }
+
+
 
         private void cb_month_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -246,12 +453,17 @@ namespace market_management
             monthlbl.Text = cb_month.SelectedItem.ToString();
             monthnv.Text = cb_month.SelectedItem.ToString();
             txtDoanhThu.Text = "0";
+            tableNhanvien.DataSource = null;
         }
 
         private void btnKetToan_Click(object sender, EventArgs e)
         {
             tinhDoanhthuthang();
-            Topnhanvien();
+            TopNhanVien();
+            Top3sanpham();
+            thongkeHinhthuc();
         }
+
+       
     }
 }

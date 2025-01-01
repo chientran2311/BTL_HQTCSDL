@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addEmploy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addEmploy.Designer.cs">
+      <DependentUpon>addEmploy.cs</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="editDonHang.Designer.cs">
       <DependentUpon>editDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="editemploy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editemploy.Designer.cs">
+      <DependentUpon>editemploy.cs</DependentUpon>
     </Compile>
     <Compile Include="employee.cs">
       <SubType>Form</SubType>
@@ -115,11 +127,17 @@
     <Compile Include="warehouse.Designer.cs">
       <DependentUpon>warehouse.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addEmploy.resx">
+      <DependentUpon>addEmploy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editDonHang.resx">
       <DependentUpon>editDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editemploy.resx">
+      <DependentUpon>editemploy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="employee.resx">
       <DependentUpon>employee.cs</DependentUpon>

@@ -45,24 +45,20 @@
             this.cb_nhanvien = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
-            this.cb_congty = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
-            this.guna2Panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.Controls.Add(this.guna2DataGridView1);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 156);
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 104);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(955, 474);
+            this.guna2Panel1.Size = new System.Drawing.Size(955, 526);
             this.guna2Panel1.TabIndex = 3;
             // 
             // guna2DataGridView1
@@ -104,7 +100,7 @@
             this.guna2DataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowTemplate.Height = 35;
-            this.guna2DataGridView1.Size = new System.Drawing.Size(955, 474);
+            this.guna2DataGridView1.Size = new System.Drawing.Size(955, 526);
             this.guna2DataGridView1.TabIndex = 0;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -148,7 +144,7 @@
             this.TimKiem.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(95)))), ((int)(((byte)(241)))));
             this.TimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TimKiem.ForeColor = System.Drawing.Color.White;
-            this.TimKiem.Location = new System.Drawing.Point(829, 38);
+            this.TimKiem.Location = new System.Drawing.Point(646, 38);
             this.TimKiem.Name = "TimKiem";
             this.TimKiem.Size = new System.Drawing.Size(52, 36);
             this.TimKiem.TabIndex = 9;
@@ -265,53 +261,18 @@
             this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(95)))), ((int)(((byte)(241)))));
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(887, 38);
+            this.guna2Button1.Location = new System.Drawing.Point(704, 38);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(48, 36);
             this.guna2Button1.TabIndex = 16;
             this.guna2Button1.Text = "Bỏ";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
-            // guna2Panel6
-            // 
-            this.guna2Panel6.Controls.Add(this.cb_congty);
-            this.guna2Panel6.Controls.Add(this.guna2HtmlLabel3);
-            this.guna2Panel6.Location = new System.Drawing.Point(622, 38);
-            this.guna2Panel6.Name = "guna2Panel6";
-            this.guna2Panel6.Size = new System.Drawing.Size(201, 36);
-            this.guna2Panel6.TabIndex = 16;
-            // 
-            // cb_congty
-            // 
-            this.cb_congty.BackColor = System.Drawing.Color.Transparent;
-            this.cb_congty.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cb_congty.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cb_congty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_congty.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cb_congty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cb_congty.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cb_congty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cb_congty.ItemHeight = 30;
-            this.cb_congty.Location = new System.Drawing.Point(64, 0);
-            this.cb_congty.Name = "cb_congty";
-            this.cb_congty.Size = new System.Drawing.Size(137, 36);
-            this.cb_congty.TabIndex = 0;
-            // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(10, 12);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(39, 15);
-            this.guna2HtmlLabel3.TabIndex = 6;
-            this.guna2HtmlLabel3.Text = "Công ty";
-            // 
             // receipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 630);
-            this.Controls.Add(this.guna2Panel6);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.guna2Panel3);
@@ -331,8 +292,6 @@
             this.guna2Panel3.PerformLayout();
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel4.PerformLayout();
-            this.guna2Panel6.ResumeLayout(false);
-            this.guna2Panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,8 +310,5 @@
         private Guna.UI2.WinForms.Guna2ComboBox cb_nhanvien;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
-        private Guna.UI2.WinForms.Guna2ComboBox cb_congty;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
     }
 }

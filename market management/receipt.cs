@@ -60,24 +60,7 @@ namespace market_management
                     }
 
                     // Tải danh sách công ty vào ComboBox cb_congty
-                    using (SqlCommand commandCongTy = new SqlCommand("SELECT maCongTy, tenCongTy FROM CongTyGiaoHang", Sqlcon))
-                    {
-                        using (SqlDataReader reader = commandCongTy.ExecuteReader())
-                        {
-                            // Dọn sạch dữ liệu cũ
-                            cb_congty.Items.Clear();
-
-                            while (reader.Read())
-                            {
-                                var item = new ComboBoxItem
-                                {
-                                    Value = reader["maCongTy"].ToString(),
-                                    Text = reader["tenCongTy"].ToString()
-                                };
-                                cb_congty.Items.Add(item);
-                            }
-                        }
-                    }
+                  
 
                     // Tải danh sách hình thức thanh toán vào ComboBox cb_hinhthucthanhtoan
                     using (SqlCommand commandHinhThucThanhToan = new SqlCommand("SELECT DISTINCT hinhThucThanhToan FROM DonHang", Sqlcon))
@@ -140,8 +123,7 @@ namespace market_management
                             cb_nhanvien.SelectedIndex == -1 ? (object)DBNull.Value : cb_nhanvien.SelectedItem.ToString());
 
                         // Thêm tham số TenCongTy
-                        command.Parameters.AddWithValue("@TenCongTy",
-                            cb_congty.SelectedIndex == -1 ? (object)DBNull.Value : cb_congty.SelectedItem.ToString());
+                       
 
                         // Mở kết nối
                         Sqlcon.Open();
@@ -188,7 +170,7 @@ namespace market_management
             txt_madonhang.Clear();  // Xóa nội dung của TextBox txt_madonhang
             cb_hinhthucthanhtoan.SelectedIndex = -1;  // Đặt lại ComboBox cb_hinhthucthanhtoan về giá trị mặc định (không chọn)
             cb_nhanvien.SelectedIndex = -1;  // Đặt lại ComboBox cb_nhanvien về giá trị mặc định (không chọn)
-            cb_congty.SelectedIndex = -1;  // Đặt lại ComboBox cb_congty về giá trị mặc định (không chọn)
+             
 
             // Chuỗi kết nối
             string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
@@ -206,7 +188,7 @@ namespace market_management
                         command.Parameters.AddWithValue("@maDonHang", DBNull.Value);
                         command.Parameters.AddWithValue("@hinhThucThanhToan", DBNull.Value);
                         command.Parameters.AddWithValue("@TenNhanVien", DBNull.Value);
-                        command.Parameters.AddWithValue("@TenCongTy", DBNull.Value);
+
 
                         Sqlcon.Open();
 
