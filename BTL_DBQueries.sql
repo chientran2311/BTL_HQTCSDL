@@ -3,9 +3,10 @@ use QLBH;
 
 drop database QLBH
 
+-- Bảng Khách Hàng
 CREATE TABLE KhachHang (
     maKhachhang INT IDENTITY(1,1) PRIMARY KEY, 
-    tenKhachhang NVARCHAR(100),
+    tenKhachhang NVARCHAR(100) NOT NULL,
     soDienThoai VARCHAR(15),
     ghiChu NVARCHAR(225),
     email VARCHAR(50),
@@ -16,20 +17,20 @@ CREATE TABLE KhachHang (
 -- Bảng Nhân Viên
 CREATE TABLE NhanVien (
     maNhanvien INT IDENTITY(1,1) PRIMARY KEY, 
-    tenNhanvien NVARCHAR(100),
+    tenNhanvien NVARCHAR(100) NOT NULL,
     soDienThoai VARCHAR(15),
     email VARCHAR(50),
     gioiTinh NVARCHAR(10) CHECK (gioiTinh = N'Nam' OR gioiTinh = N'Nữ'),
-    Luong FLOAT,
+    Luong FLOAT CHECK (Luong >= 0), -- Ensure salary is non-negative
     diaChi VARCHAR(100)
 );
 
 -- Bảng Tài Khoản
 CREATE TABLE TaiKhoan (
     maNhanvien INT, 
-    tenTaiKhoan VARCHAR(30) UNIQUE, 
-    matKhau VARCHAR(50),
-    quyenQuanTri BIT,
+    tenTaiKhoan VARCHAR(30) UNIQUE NOT NULL, 
+    matKhau VARCHAR(50) NOT NULL,
+    quyenQuanTri BIT NOT NULL DEFAULT 0,
     PRIMARY KEY (maNhanvien, tenTaiKhoan), 
     FOREIGN KEY (maNhanvien) REFERENCES NhanVien(maNhanvien) ON DELETE CASCADE
 );
@@ -38,9 +39,9 @@ CREATE TABLE TaiKhoan (
 CREATE TABLE CongTyGiaoHang (
     maCongTy INT IDENTITY(1,1) PRIMARY KEY, 
     tenCongTy NVARCHAR(100) NOT NULL, 
-    diaChi NVARCHAR(200), 
-    tongDai NVARCHAR(15), 
-    email NVARCHAR(100), 
+    diaChi NVARCHAR(200),
+    tongDai NVARCHAR(15),
+    email NVARCHAR(100),
     moTa TEXT
 );
 
@@ -67,18 +68,19 @@ CREATE TABLE KhuyenMai (
     id INT IDENTITY(1,1) PRIMARY KEY,
     tenKhuyenMai NVARCHAR(255) NOT NULL,
     maKhuyenMai VARCHAR(50) NOT NULL UNIQUE,
-    phanTramGiamGia DECIMAL(5, 2) NOT NULL
+    phanTramGiamGia DECIMAL(5, 2) NOT NULL CHECK (phanTramGiamGia >= 0 AND phanTramGiamGia <= 100)
 );
 
--- Bảng Đơn Hàng (Bỏ tham chiếu đến công ty giao hàng, chỉ tham chiếu đến nhân viên)
+-- Bảng Đơn Hàng
 CREATE TABLE DonHang (
     maDonHang INT IDENTITY(1,1) PRIMARY KEY, 
-    maKhachHang INT,
-    thanhTien BIGINT,
+    maKhachHang INT NOT NULL,
+    thanhTien BIGINT NOT NULL CHECK (thanhTien >= 0),
+	hinhThucThanhToan nvarchar(50),
     ghiChu NVARCHAR(225),
-    maNhanVien INT,
+    maNhanVien INT NOT NULL,
     maKhuyenMai INT NULL,
-    Ngaytaodon DATE,
+    Ngaytaodon DATE NOT NULL,
     FOREIGN KEY (maNhanVien) REFERENCES NhanVien(maNhanvien) ON DELETE CASCADE,
     FOREIGN KEY (maKhachHang) REFERENCES KhachHang(maKhachhang) ON DELETE CASCADE,
     FOREIGN KEY (maKhuyenMai) REFERENCES KhuyenMai(id) ON DELETE SET NULL
@@ -88,37 +90,53 @@ CREATE TABLE DonHang (
 CREATE TABLE SanPham (
     maSanPham INT IDENTITY(1,1) PRIMARY KEY,                     
     tenSanPham NVARCHAR(255) NOT NULL,  
-    giaNhapSanPham DECIMAL(10, 2) NOT NULL,
-    giaBanSanPham DECIMAL(10, 2) NOT NULL,         
-    slSanPhamTonKho INT NOT NULL,    
-    slSanPhamDaBan INT DEFAULT 0,                     
+    giaNhapSanPham DECIMAL(10, 2) NOT NULL CHECK (giaNhapSanPham > 0),
+    giaBanSanPham DECIMAL(10, 2) NOT NULL CHECK (giaBanSanPham > 0),
+    slSanPhamTonKho INT NOT NULL DEFAULT 0,
+	slSanPhamDaBan INT DEFAULT 0 CHECK (slSanPhamDaBan >= 0),                     
     trangThaiSanPham BIT DEFAULT 1
 );
 
--- Bảng Sản Phẩm - Đơn Hàng
+-- Bảng Sản Phẩm - Đơn Hàng (Quan hệ Nhiều-Nhiều giữa Sản Phẩm và Đơn Hàng)
 CREATE TABLE SP_DonHang (
     maDonHang INT,
     maSanPham INT,
-    soLuong INT,
-	PRIMARY KEY (maDonHang, maSanPham),
+    soLuong INT NOT NULL CHECK (soLuong > 0),
+    PRIMARY KEY (maDonHang, maSanPham),
     FOREIGN KEY (maDonHang) REFERENCES DonHang(maDonHang) ON DELETE CASCADE,
     FOREIGN KEY (maSanPham) REFERENCES SanPham(maSanPham) ON DELETE CASCADE
 );
 
--- Bảng Kho Hàng (Tham chiếu đến công ty giao hàng)
 CREATE TABLE KhoHang (
-    maKhoHang INT IDENTITY(1,1) PRIMARY KEY, 
-    ngay DATE, 
-    TenKhohang NVARCHAR(100), 
-    maSanPham INT,
-    soLuong INT, 
-    tongTien INT,
-    nguoiTao NVARCHAR(50), 
+    maKhoHang INT IDENTITY(1,1) PRIMARY KEY,  
+    ngay DATE NOT NULL, 
+    tenKhoHang NVARCHAR(100) NOT NULL, 
+    nguoiTao NVARCHAR(50) NOT NULL, 
     moTa NVARCHAR(225),
-    maCongTy INT, 
-    FOREIGN KEY (maSanPham) REFERENCES SanPham(maSanPham) ON DELETE CASCADE,
+    maCongTy INT NOT NULL, -- Link to the company that owns the warehouse
     FOREIGN KEY (maCongTy) REFERENCES CongTyGiaoHang(maCongTy) ON DELETE CASCADE
 );
+
+
+CREATE TABLE ChiTietKhoHang (
+    maChiTietKhoHang INT IDENTITY(1,1) PRIMARY KEY, -- Unique detail ID
+    maKhoHang INT NOT NULL,                         -- References `KhoHang`
+    maSanPham INT NOT NULL,                         -- References `SanPham`
+    ngayNhap DATE NOT NULL,                         -- Date of product entry
+    soLuong INT NOT NULL CHECK (soLuong >= 0),      -- Quantity of the product
+    tongTien DECIMAL(18, 2)  CHECK (tongTien >= 0), -- Total value
+    FOREIGN KEY (maKhoHang) REFERENCES KhoHang(maKhoHang) ON DELETE CASCADE,
+    FOREIGN KEY (maSanPham) REFERENCES SanPham(maSanPham) ON DELETE CASCADE
+);
+
+/*
+trigger tự động tính điểm tích lũy cho khách hàng, ngày sinh nhật khách hàng tự động trừ tiền hóa đơn
+*/
+
+select * from KhachHang
+
+delete from DonHang where maDonHang = 6
+
 
 CREATE VIEW vw_SanPham_DonHang AS
 SELECT 
@@ -132,59 +150,203 @@ FROM
 JOIN 
     SanPham sp ON spd.maSanPham = sp.maSanPham;
 
-/*
-trigger tự động tính điểm tích lũy cho khách hàng, ngày sinh nhật khách hàng tự động trừ tiền hóa đơn
-*/
 
-INSERT INTO KhachHang (tenKhachhang, soDienThoai, ghiChu, email, gioiTinh, diaChi)
-VALUES 
-(N'Nguyễn Văn A', '0987654321', N'Khách hàng thường xuyên', 'vana@gmail.com', N'Nam', N'Hà Nội'),
-(N'Trần Thị B', '0912345678', N'Khách hàng tiềm năng', 'thib@gmail.com', N'Nữ', N'Đà Nẵng'),
-(N'Lê Văn C', '0978123456', N'Khách hàng mới', 'levanc@gmail.com', N'Nam', N'Hồ Chí Minh');
+CREATE TRIGGER trig_UpdateThanhTien
+ON SP_DonHang
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    DECLARE @maDonHang INT
 
-INSERT INTO NhanVien (tenNhanvien, soDienThoai, email, gioiTinh, Luong, diaChi)
-VALUES 
-(N'Nguyễn Văn D', '0901234567', 'vandung@gmail.com', N'Nam', 10000000, N'Hà Nội'),
-(N'Trần Thị E', '0912987654', 'thie@gmail.com', N'Nữ', 12000000, N'Đà Nẵng');
+    IF EXISTS(SELECT * FROM inserted)
+        SELECT @maDonHang = maDonHang FROM inserted
+    ELSE
+        SELECT @maDonHang = maDonHang FROM deleted
 
+    UPDATE DonHang
+    SET thanhTien = (
+        SELECT SUM(SP_DonHang.soLuong * SanPham.giaBanSanPham)
+        FROM SP_DonHang
+        JOIN SanPham ON SP_DonHang.maSanPham = SanPham.maSanPham
+        WHERE SP_DonHang.maDonHang = @maDonHang
+    )
+    WHERE maDonHang = @maDonHang
+END
 
-INSERT INTO CongTyGiaoHang (tenCongTy, diaChi, tongDai, email, moTa)
-VALUES 
-(N'Giao Nhanh Express', N'Hà Nội', '18001111', 'info@gnexpress.com', N'Vận chuyển nhanh chóng'),
-(N'Chuyển Phát Nhanh', N'Đà Nẵng', '18002222', 'info@cpnhanh.com', N'Vận chuyển an toàn');
+CREATE TRIGGER trg_CapNhatSanPhamDaBan
+ON SP_DonHang
+AFTER INSERT, update
+AS
+BEGIN
+    UPDATE sp
+    SET sp.slSanPhamDaBan = sp.slSanPhamDaBan + i.soLuong
+    FROM SanPham sp
+    JOIN inserted i ON sp.maSanPham = i.maSanPham;
+END;
 
-INSERT INTO NhaCungCap (tenNhaCungCap, diaChi, soDienThoai, email)
-VALUES 
-(N'Công ty ABC', N'Hồ Chí Minh', '0281234567', 'contact@abc.com'),
-(N'Công ty XYZ', N'Hà Nội', '0249876543', 'contact@xyz.com');
-
-INSERT INTO KhuyenMai (tenKhuyenMai, maKhuyenMai, phanTramGiamGia)
-VALUES 
-(N'Giảm 10%', 'KM10', 10.00),
-(N'Giảm 20%', 'KM20', 20.00);
-
-INSERT INTO SanPham (tenSanPham, giaNhapSanPham, giaBanSanPham, slSanPhamTonKho, slSanPhamDaBan, trangThaiSanPham)
-VALUES 
-(N'Điện thoại iPhone 13', 15000000, 20000000, 50, 10, 1),
-(N'Laptop Dell XPS 13', 25000000, 30000000, 30, 5, 1),
-(N'Tai nghe Bluetooth Sony', 500000, 800000, 100, 20, 1);
-
-INSERT INTO DonHang (maKhachHang, thanhTien, ghiChu, maNhanVien, maKhuyenMai, Ngaytaodon)
-VALUES 
-(1, 0, N'Đơn hàng mẫu 1', 1, 1, '2024-12-30'),
-(2, 0, N'Đơn hàng mẫu 2', 2, 2, '2024-12-30');
-
-INSERT INTO SP_DonHang (maDonHang, maSanPham, soLuong)
-VALUES 
-(1, 1, 2), -- iPhone 13, 2 cái
-(1, 2, 1), -- Laptop Dell XPS 13, 1 cái
-(2, 3, 3); -- Tai nghe Bluetooth Sony, 3 cái
-
-INSERT INTO KhoHang (ngay, TenKhohang, maSanPham, soLuong, tongTien, nguoiTao, moTa, maCongTy)
-VALUES 
-('2024-12-01', N'Kho Hà Nội', 1, 20, 400000000, N'Nguyễn Văn D', N'Hàng điện tử', 1),
-('2024-12-02', N'Kho Đà Nẵng', 2, 10, 300000000, N'Trần Thị E', N'Hàng laptop', 2);
 
 select * from DonHang
 
-delete from DonHang where maDonHang = 6
+CREATE FUNCTION fn_DemSanPhamTonKho()
+RETURNS INT
+AS
+BEGIN
+    DECLARE @soLuongTonKho INT;
+    SELECT @soLuongTonKho = SUM(slSanPhamTonKho)
+    FROM SanPham;
+    RETURN @soLuongTonKho;
+END;
+
+CREATE FUNCTION fn_SanPhamHetHang()
+RETURNS @SanPhamHetHang TABLE (
+    maSanPham INT,
+    tenSanPham NVARCHAR(255)
+)
+AS
+BEGIN
+    DECLARE @maSanPham INT;
+    DECLARE @tenSanPham NVARCHAR(255);
+
+    DECLARE sp_cursor CURSOR FOR
+    SELECT maSanPham, tenSanPham
+    FROM SanPham
+    WHERE slSanPhamTonKho = 0;
+
+    OPEN sp_cursor;
+    FETCH NEXT FROM sp_cursor INTO @maSanPham, @tenSanPham;
+
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        INSERT INTO @SanPhamHetHang(maSanPham, tenSanPham)
+        VALUES (@maSanPham, @tenSanPham);
+
+        FETCH NEXT FROM sp_cursor INTO @maSanPham, @tenSanPham;
+    END;
+
+    CLOSE sp_cursor;
+    DEALLOCATE sp_cursor;
+
+    RETURN;
+END;
+
+CREATE PROCEDURE sp_CapNhatSoLuongSP
+    @maSanPham INT, 
+    @soLuongMoi INT
+AS
+BEGIN
+    UPDATE SanPham
+    SET slSanPhamTonKho = @soLuongMoi
+    WHERE maSanPham = @maSanPham;
+END;
+
+CREATE PROCEDURE sp_CapNhatLuongNhanVien
+    @maNhanvien INT,
+    @luongMoi FLOAT
+AS
+BEGIN
+    UPDATE NhanVien
+    SET Luong = @luongMoi
+    WHERE maNhanvien = @maNhanvien;
+END;
+
+CREATE FUNCTION func_TongDoanhThu()
+RETURNS BIGINT
+AS
+BEGIN
+    DECLARE @doanhThu BIGINT;
+    SELECT @doanhThu = SUM(thanhTien)
+    FROM DonHang;
+    RETURN @doanhThu;
+END;
+
+CREATE VIEW view_KhachHangDonHang AS
+SELECT 
+    kh.maKhachhang,
+    kh.tenKhachhang,
+    dh.maDonHang,
+    dh.thanhTien,
+    dh.Ngaytaodon
+FROM KhachHang kh
+LEFT JOIN DonHang dh ON kh.maKhachhang = dh.maKhachHang;
+
+
+use QLBH;
+
+
+
+
+-- test db
+-- Insert data into KhachHang
+INSERT INTO KhachHang (tenKhachhang, soDienThoai, ghiChu, email, gioiTinh, diaChi)
+VALUES
+(N'Nguyen Van A', '0987654321', N'Khách VIP', 'nguyenvana@email.com', N'Nam', N'Hà Nội'),
+(N'Tran Thi B', '0912345678', N'Thường xuyên mua hàng', 'tranthib@email.com', N'Nữ', N'Hồ Chí Minh');
+
+-- Insert data into NhanVien
+INSERT INTO NhanVien (tenNhanvien, soDienThoai, email, gioiTinh, Luong, diaChi)
+VALUES
+(N'Le Van C', '0981112233', 'levanc@email.com', N'Nam', 15000000, N'Đà Nẵng'),
+(N'Pham Thi D', '0909988776', 'phamthid@email.com', N'Nữ', 17000000, N'Hải Phòng');
+
+-- Insert data into TaiKhoan
+INSERT INTO TaiKhoan (maNhanvien, tenTaiKhoan, matKhau, quyenQuanTri)
+VALUES
+(1, 'levanc', 'password123', 1),
+(2, 'phamthid', 'secure456', 0);
+
+-- Insert data into CongTyGiaoHang
+INSERT INTO CongTyGiaoHang (tenCongTy, diaChi, tongDai, email, moTa)
+VALUES
+(N'CTGH A', N'123 Đường A', '0909090909', 'contact@ctgha.com', N'Công ty vận chuyển nhanh'),
+(N'CTGH B', N'456 Đường B', '0919191919', 'contact@ctghb.com', N'Dịch vụ giao hàng tận nơi');
+
+-- Insert data into NhaCungCap
+INSERT INTO NhaCungCap (tenNhaCungCap, diaChi, soDienThoai, email)
+VALUES
+(N'NCC A', N'Địa chỉ A', '0922334455', 'ncca@email.com'),
+(N'NCC B', N'Địa chỉ B', '0933445566', 'nccb@email.com');
+
+-- Insert data into PhanPhoi
+INSERT INTO PhanPhoi (maNhaCungCap, maCongTy)
+VALUES
+(1, 1),
+(2, 2);
+
+-- Insert data into KhuyenMai
+INSERT INTO KhuyenMai (tenKhuyenMai, maKhuyenMai, phanTramGiamGia)
+VALUES
+(N'Khuyến mãi Tết', 'TET2024', 10.00),
+(N'Khuyến mãi Hè', 'SUM2024', 15.00);
+
+-- Insert data into DonHang
+INSERT INTO DonHang (maKhachHang, thanhTien, hinhThucThanhToan, ghiChu, maNhanVien, maKhuyenMai, Ngaytaodon)
+VALUES
+(1, 500000, N'Tiền mặt', N'Giao nhanh', 1, 1, '2024-01-01'),
+(2, 300000, N'Chuyển khoản', N'Đặt trước', 2, 2, '2024-02-01');
+
+-- Insert data into SanPham
+INSERT INTO SanPham (tenSanPham, giaNhapSanPham, giaBanSanPham, slSanPhamTonKho, slSanPhamDaBan, trangThaiSanPham)
+VALUES
+(N'Sản phẩm A', 100000, 150000, 50, 10, 1),
+(N'Sản phẩm B', 200000, 250000, 30, 5, 1);
+
+-- Insert data into SP_DonHang
+INSERT INTO SP_DonHang (maDonHang, maSanPham, soLuong)
+VALUES
+(1, 1, 2),
+(2, 2, 1);
+
+-- Insert data into KhoHang
+INSERT INTO KhoHang (ngay, tenKhoHang, nguoiTao, moTa, maCongTy)
+VALUES
+('2024-01-01', N'Kho A', N'Admin A', N'Kho chính', 1),
+('2024-02-01', N'Kho B', N'Admin B', N'Kho dự trữ', 2);
+
+-- Insert data into ChiTietKhoHang
+INSERT INTO ChiTietKhoHang (maKhoHang, maSanPham, ngayNhap, soLuong, tongTien)
+VALUES
+(1, 1, '2024-01-02', 20, 2000000),
+(2, 2, '2024-02-02', 15, 3000000);
+
+select * from NhanVien
+select * from DonHang

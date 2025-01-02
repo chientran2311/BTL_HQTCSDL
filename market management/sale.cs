@@ -197,8 +197,8 @@ namespace market_management
 
                 // Tạo đơn hàng mới
                 string insertOrder = @"
-                INSERT INTO DonHang (maKhachHang, thanhTien, ghiChu, maNhanVien, Ngaytaodon)
-                VALUES (@maKhachHang, 0, N'Đơn hàng mới', 1, GETDATE());
+                INSERT INTO DonHang (maKhachHang, thanhTien, hinhThucThanhToan, ghiChu, maNhanVien, Ngaytaodon)
+                VALUES (@maKhachHang, 0, N'Tiền mặt', N'Đơn hàng mới', 1, GETDATE());
                 SELECT SCOPE_IDENTITY();";
 
                 SqlCommand cmdOrder = new SqlCommand(insertOrder, conn);
