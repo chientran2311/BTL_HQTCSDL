@@ -390,7 +390,8 @@ namespace market_management
                 SET thanhTien = @tongTien,
                     ghiChu = @ghiChu,
                     maKhuyenMai = @maKhuyenMai,
-                    maNhanVien = @maNhanVien
+                    maNhanVien = @maNhanVien,
+                    hinhThucThanhToan = @hinhThucThanhToan
                 WHERE maDonHang = @maDonHang;";
 
                     SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
@@ -398,6 +399,7 @@ namespace market_management
                     cmdUpdate.Parameters.AddWithValue("@ghiChu", txtGhiChuDonHang.Text);
                     cmdUpdate.Parameters.AddWithValue("@maKhuyenMai", maKhuyenMai.HasValue ? (object)maKhuyenMai.Value : DBNull.Value);
                     cmdUpdate.Parameters.AddWithValue("@maNhanVien", string.IsNullOrEmpty(txtMaNV.Text) ? (object)DBNull.Value : txtMaNV.Text);
+                    cmdUpdate.Parameters.AddWithValue("@hinhThucThanhToan", cbHinhThucThanhToan.SelectedItem.ToString());
                     cmdUpdate.Parameters.AddWithValue("@maDonHang", maDonHang);
 
                     int rowsAffected = cmdUpdate.ExecuteNonQuery();
