@@ -42,6 +42,7 @@
             this.txtTenKhachHang = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnThemSP = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnSDKhuyenMai = new Guna.UI2.WinForms.Guna2Button();
             this.dtpNgayTaoDon = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnResetForm = new Guna.UI2.WinForms.Guna2Button();
@@ -60,7 +61,6 @@
             this.txtTongTien = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnTaoDonHang = new Guna.UI2.WinForms.Guna2Button();
             this.txtMaSP = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btnSDKhuyenMai = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSP_DonHang)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -149,6 +149,7 @@
             this.btnThemKH.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnThemKH.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnThemKH.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnThemKH.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
             this.btnThemKH.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnThemKH.ForeColor = System.Drawing.Color.White;
             this.btnThemKH.Location = new System.Drawing.Point(601, 292);
@@ -285,6 +286,7 @@
             this.btnThemSP.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnThemSP.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnThemSP.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnThemSP.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
             this.btnThemSP.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnThemSP.ForeColor = System.Drawing.Color.White;
             this.btnThemSP.Location = new System.Drawing.Point(525, 15);
@@ -320,6 +322,23 @@
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(335, 679);
             this.guna2Panel1.TabIndex = 4;
+            // 
+            // btnSDKhuyenMai
+            // 
+            this.btnSDKhuyenMai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSDKhuyenMai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSDKhuyenMai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSDKhuyenMai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSDKhuyenMai.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
+            this.btnSDKhuyenMai.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSDKhuyenMai.ForeColor = System.Drawing.Color.White;
+            this.btnSDKhuyenMai.Location = new System.Drawing.Point(140, 122);
+            this.btnSDKhuyenMai.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSDKhuyenMai.Name = "btnSDKhuyenMai";
+            this.btnSDKhuyenMai.Size = new System.Drawing.Size(175, 32);
+            this.btnSDKhuyenMai.TabIndex = 16;
+            this.btnSDKhuyenMai.Text = "Sử dụng khuyến mãi";
+            this.btnSDKhuyenMai.Click += new System.EventHandler(this.btnSDKhuyenMai_Click);
             // 
             // dtpNgayTaoDon
             // 
@@ -400,6 +419,7 @@
             this.btnLuuDonHang.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLuuDonHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLuuDonHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLuuDonHang.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
             this.btnLuuDonHang.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLuuDonHang.ForeColor = System.Drawing.Color.White;
             this.btnLuuDonHang.Location = new System.Drawing.Point(140, 629);
@@ -568,6 +588,7 @@
             this.btnTaoDonHang.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnTaoDonHang.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnTaoDonHang.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnTaoDonHang.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(109)))), ((int)(((byte)(242)))));
             this.btnTaoDonHang.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnTaoDonHang.ForeColor = System.Drawing.Color.White;
             this.btnTaoDonHang.Location = new System.Drawing.Point(819, 15);
@@ -598,22 +619,6 @@
             this.txtMaSP.Size = new System.Drawing.Size(489, 32);
             this.txtMaSP.TabIndex = 3;
             this.txtMaSP.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
-            // 
-            // btnSDKhuyenMai
-            // 
-            this.btnSDKhuyenMai.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSDKhuyenMai.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSDKhuyenMai.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSDKhuyenMai.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSDKhuyenMai.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSDKhuyenMai.ForeColor = System.Drawing.Color.White;
-            this.btnSDKhuyenMai.Location = new System.Drawing.Point(140, 122);
-            this.btnSDKhuyenMai.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSDKhuyenMai.Name = "btnSDKhuyenMai";
-            this.btnSDKhuyenMai.Size = new System.Drawing.Size(175, 32);
-            this.btnSDKhuyenMai.TabIndex = 16;
-            this.btnSDKhuyenMai.Text = "Sử dụng khuyến mãi";
-            this.btnSDKhuyenMai.Click += new System.EventHandler(this.btnSDKhuyenMai_Click);
             // 
             // sale
             // 
