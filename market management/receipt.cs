@@ -122,8 +122,9 @@ namespace market_management
                         command.Parameters.AddWithValue("@TenNhanVien",
                             cb_nhanvien.SelectedIndex == -1 ? (object)DBNull.Value : cb_nhanvien.SelectedItem.ToString());
 
-                        // Thêm tham số TenCongTy
-                       
+                        // Thêm tham số @ngaytaodon
+                        command.Parameters.AddWithValue("@ngaytaodon",
+                            dt_receipt.Checked ? (object)dt_receipt.Value.Date : (object)DBNull.Value);
 
                         // Mở kết nối
                         Sqlcon.Open();
@@ -154,6 +155,7 @@ namespace market_management
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 

@@ -193,6 +193,7 @@
             this.Controls.Add(this.guna2GradientPanel1);
             this.Controls.Add(this.guna2GradientPanel2);
             this.Name = "login2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "login2";
             this.guna2GradientPanel2.ResumeLayout(false);
             this.guna2GradientPanel2.PerformLayout();
