@@ -42,15 +42,15 @@
             this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qLBHDataSet2 = new market_management.QLBHDataSet2();
             this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.khoHangBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.khoHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khoHangTableAdapter = new market_management.QLBHDataSet2TableAdapters.KhoHangTableAdapter();
             this.sanPhamTableAdapter = new market_management.QLBHDataSet2TableAdapters.SanPhamTableAdapter();
-            this.khoHangBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2CustomGradientPanel1
@@ -76,13 +76,13 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(153, 220);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(103, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 14;
             // 
             // guna2HtmlLabel5
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(46, 225);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(12, 225);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(82, 15);
             this.guna2HtmlLabel5.TabIndex = 13;
@@ -91,7 +91,7 @@
             // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(46, 282);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(49, 282);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(45, 15);
             this.guna2HtmlLabel4.TabIndex = 12;
@@ -100,16 +100,16 @@
             // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(46, 165);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(27, 167);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(67, 15);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(71, 15);
             this.guna2HtmlLabel3.TabIndex = 11;
-            this.guna2HtmlLabel3.Text = "Mã sản phẩm";
+            this.guna2HtmlLabel3.Text = "Tên sản phẩm";
             // 
             // guna2HtmlLabel2
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(46, 103);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(28, 102);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(66, 15);
             this.guna2HtmlLabel2.TabIndex = 10;
@@ -124,9 +124,9 @@
             this.guna2Button2.FillColor = System.Drawing.Color.Red;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(322, 220);
+            this.guna2Button2.Location = new System.Drawing.Point(406, 317);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(85, 38);
+            this.guna2Button2.Size = new System.Drawing.Size(71, 29);
             this.guna2Button2.TabIndex = 7;
             this.guna2Button2.Text = "Hủy";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
@@ -140,9 +140,9 @@
             this.guna2Button1.FillColor = System.Drawing.Color.Chartreuse;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(322, 103);
+            this.guna2Button1.Location = new System.Drawing.Point(309, 317);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(85, 38);
+            this.guna2Button1.Size = new System.Drawing.Size(69, 29);
             this.guna2Button1.TabIndex = 6;
             this.guna2Button1.Text = "Thêm";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -170,7 +170,7 @@
             // 
             this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2ComboBox2.DataSource = this.sanPhamBindingSource;
-            this.guna2ComboBox2.DisplayMember = "maSanPham";
+            this.guna2ComboBox2.DisplayMember = "tenSanPham";
             this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.guna2ComboBox2.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -180,7 +180,7 @@
             this.guna2ComboBox2.ItemHeight = 30;
             this.guna2ComboBox2.Location = new System.Drawing.Point(153, 156);
             this.guna2ComboBox2.Name = "guna2ComboBox2";
-            this.guna2ComboBox2.Size = new System.Drawing.Size(103, 36);
+            this.guna2ComboBox2.Size = new System.Drawing.Size(254, 36);
             this.guna2ComboBox2.TabIndex = 2;
             // 
             // sanPhamBindingSource
@@ -210,6 +210,11 @@
             this.guna2ComboBox1.Size = new System.Drawing.Size(103, 36);
             this.guna2ComboBox1.TabIndex = 1;
             // 
+            // khoHangBindingSource1
+            // 
+            this.khoHangBindingSource1.DataMember = "KhoHang";
+            this.khoHangBindingSource1.DataSource = this.qLBHDataSet2;
+            // 
             // khoHangBindingSource
             // 
             this.khoHangBindingSource.DataMember = "KhoHang";
@@ -223,18 +228,13 @@
             // 
             this.sanPhamTableAdapter.ClearBeforeFill = true;
             // 
-            // khoHangBindingSource1
-            // 
-            this.khoHangBindingSource1.DataMember = "KhoHang";
-            this.khoHangBindingSource1.DataSource = this.qLBHDataSet2;
-            // 
-            // Form2
+            // Form_Them
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 358);
             this.Controls.Add(this.guna2CustomGradientPanel1);
-            this.Name = "Form2";
+            this.Name = "Form_Them";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm vào kho hàng";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -242,8 +242,8 @@
             this.guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

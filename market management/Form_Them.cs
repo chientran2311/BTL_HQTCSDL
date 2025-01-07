@@ -50,7 +50,7 @@ namespace market_management
                 DataRowView selectedRow1 = (DataRowView)guna2ComboBox1.SelectedItem;
                 DataRowView selectedRow2 = (DataRowView)guna2ComboBox2.SelectedItem;
                 var maKhoHang = selectedRow1["maKhoHang"];
-                var maSanPham = selectedRow2["maSanPham"];
+                var tenSanPham = selectedRow2["tenSanPham"];
                 var ngayNhap = DateTime.Now;
 
                 // Lấy số lượng từ TextBox
@@ -62,12 +62,12 @@ namespace market_management
                     {
                         conn.Open();
 
-                        using (SqlCommand cmd = new SqlCommand("InsertKhoHang", conn))
+                        using (SqlCommand cmd = new SqlCommand("sp_InsertKhoHang", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.AddWithValue("@ngayNhap", ngayNhap);
-                            cmd.Parameters.AddWithValue("@maSanPham", maSanPham);
+                            cmd.Parameters.AddWithValue("@tenSanPham", tenSanPham);
                             cmd.Parameters.AddWithValue("@soLuong", soLuong);
                             cmd.Parameters.AddWithValue("@maKhoHang", maKhoHang);
 

@@ -17,7 +17,7 @@ namespace market_management
         public warehouse()
         {
             InitializeComponent();
-
+            //RefreshDataGridView();
         }
 
 
@@ -26,6 +26,10 @@ namespace market_management
 
         private void warehouse_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'qLBHDataSet3.ChiTietKhoHang' table. You can move, or remove it, as needed.
+            this.chiTietKhoHangTableAdapter.Fill(this.qLBHDataSet3.ChiTietKhoHang);
+            // TODO: This line of code loads data into the 'qLBHDataSet3.view_ChiTietKhoHang' table. You can move, or remove it, as needed.
+            this.view_ChiTietKhoHangTableAdapter.Fill(this.qLBHDataSet3.view_ChiTietKhoHang);
             // TODO: This line of code loads data into the 'qLBHDataSet2.ChiTietKhoHang' table. You can move, or remove it, as needed.
             this.chiTietKhoHangTableAdapter2.Fill(this.qLBHDataSet2.ChiTietKhoHang);
             // TODO: This line of code loads data into the 'qLBHDataSet2.KhoHang' table. You can move, or remove it, as needed.
@@ -33,7 +37,7 @@ namespace market_management
             // TODO: This line of code loads data into the 'qLBHDataSet2.SanPham' table. You can move, or remove it, as needed.
             this.sanPhamTableAdapter.Fill(this.qLBHDataSet2.SanPham);
             // TODO: This line of code loads data into the 'qLBHDataSet2.viewChiTietKhoHang' table. You can move, or remove it, as needed.
-            this.viewChiTietKhoHangTableAdapter2.Fill(this.qLBHDataSet2.viewChiTietKhoHang);
+            //this.viewChiTietKhoHangTableAdapter2.Fill(this.qLBHDataSet3.view_ChiTietKhoHang);
             // TODO: This line of code loads data into the 'qLBHDataSet1.viewChiTietKhoHang' table. You can move, or remove it, as needed.
             // TODO: This line of code loads data into the 'qLBHDataSet1.ChiTietKhoHang' table. You can move, or remove it, as needed.
 
@@ -43,7 +47,7 @@ namespace market_management
         // Warehouse.cs
         public void RefreshDataGridView()
         {
-            string query = "SELECT * FROM ChiTietKhoHang"; // Hoặc view của bạn
+            string query = "SELECT * FROM view_ChiTietKhoHang ORDER BY maSanPham DESC "; // Hoặc view của bạn
 
             try
             {
@@ -104,7 +108,7 @@ namespace market_management
                 {
                     conn.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("TraCuuKhoHang", conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_TraCuuKhoHang", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -169,7 +173,7 @@ namespace market_management
                         conn.Open();
 
                         // Create SqlCommand for stored procedure
-                        using (SqlCommand cmd = new SqlCommand("DeleteKhoHang", conn))
+                        using (SqlCommand cmd = new SqlCommand("sp_DeleteKhoHang", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -204,6 +208,11 @@ namespace market_management
         }
 
         private void guna2ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

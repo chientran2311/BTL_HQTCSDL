@@ -96,6 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLBHDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLBHDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBHDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="receipt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +181,17 @@
     </None>
     <None Include="QLBHDataSet2.xss">
       <DependentUpon>QLBHDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLBHDataSet3.xsc">
+      <DependentUpon>QLBHDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QLBHDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLBHDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLBHDataSet3.xss">
+      <DependentUpon>QLBHDataSet3.xsd</DependentUpon>
     </None>
     <None Include="Resources\Very good works are waiting for you Login Now!!!.png" />
   </ItemGroup>
