@@ -33,7 +33,6 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2ComboBox3 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.sanPhamBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.qLBHDataSet2 = new market_management.QLBHDataSet2();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
@@ -45,14 +44,7 @@
             this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.maChiTietKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSanPhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tongTienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chiTietKhoHangBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.qLBHDataSet3 = new market_management.QLBHDataSet3();
             this.viewChiTietKhoHangBindingSource6 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,28 +53,23 @@
             this.viewChiTietKhoHangBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.viewChiTietKhoHangTableAdapter2 = new market_management.QLBHDataSet2TableAdapters.viewChiTietKhoHangTableAdapter();
             this.viewChiTietKhoHangBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
-            this.sanPhamTableAdapter = new market_management.QLBHDataSet2TableAdapters.SanPhamTableAdapter();
             this.qLBHDataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.khoHangTableAdapter = new market_management.QLBHDataSet2TableAdapters.KhoHangTableAdapter();
             this.chiTietKhoHangBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.chiTietKhoHangTableAdapter2 = new market_management.QLBHDataSet2TableAdapters.ChiTietKhoHangTableAdapter();
             this.qLBHDataSet2BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource7 = new System.Windows.Forms.BindingSource(this.components);
-            this.view_ChiTietKhoHangTableAdapter = new market_management.QLBHDataSet3TableAdapters.view_ChiTietKhoHangTableAdapter();
             this.viewChiTietKhoHangBindingSource8 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource9 = new System.Windows.Forms.BindingSource(this.components);
-            this.chiTietKhoHangTableAdapter = new market_management.QLBHDataSet3TableAdapters.ChiTietKhoHangTableAdapter();
+            this.qLBHDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qLBHDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.qLBHDataSetBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietKhoHangBindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource)).BeginInit();
@@ -98,6 +85,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -144,12 +134,6 @@
             // sanPhamBindingSource1
             // 
             this.sanPhamBindingSource1.DataMember = "SanPham";
-            this.sanPhamBindingSource1.DataSource = this.qLBHDataSet2;
-            // 
-            // qLBHDataSet2
-            // 
-            this.qLBHDataSet2.DataSetName = "QLBHDataSet2";
-            this.qLBHDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label4
             // 
@@ -251,12 +235,10 @@
             // khoHangBindingSource
             // 
             this.khoHangBindingSource.DataMember = "KhoHang";
-            this.khoHangBindingSource.DataSource = this.qLBHDataSet2;
             // 
             // sanPhamBindingSource
             // 
             this.sanPhamBindingSource.DataMember = "SanPham";
-            this.sanPhamBindingSource.DataSource = this.qLBHDataSet2;
             // 
             // guna2Panel2
             // 
@@ -271,17 +253,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.maChiTietKhoHangDataGridViewTextBoxColumn,
-            this.maKhoHangDataGridViewTextBoxColumn,
-            this.maSanPhamDataGridViewTextBoxColumn,
-            this.soLuongDataGridViewTextBoxColumn,
-            this.ngayNhapDataGridViewTextBoxColumn,
-            this.tongTienDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.chiTietKhoHangBindingSource3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -289,81 +262,17 @@
             this.dataGridView1.Size = new System.Drawing.Size(907, 438);
             this.dataGridView1.TabIndex = 1;
             // 
-            // maChiTietKhoHangDataGridViewTextBoxColumn
-            // 
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maChiTietKhoHang";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.FillWeight = 152.2843F;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.HeaderText = "maChiTietKhoHang";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.Name = "maChiTietKhoHangDataGridViewTextBoxColumn";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // maKhoHangDataGridViewTextBoxColumn
-            // 
-            this.maKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maKhoHang";
-            this.maKhoHangDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.maKhoHangDataGridViewTextBoxColumn.HeaderText = "maKhoHang";
-            this.maKhoHangDataGridViewTextBoxColumn.Name = "maKhoHangDataGridViewTextBoxColumn";
-            this.maKhoHangDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maKhoHangDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // maSanPhamDataGridViewTextBoxColumn
-            // 
-            this.maSanPhamDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maSanPhamDataGridViewTextBoxColumn.DataPropertyName = "maSanPham";
-            this.maSanPhamDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.maSanPhamDataGridViewTextBoxColumn.HeaderText = "maSanPham";
-            this.maSanPhamDataGridViewTextBoxColumn.Name = "maSanPhamDataGridViewTextBoxColumn";
-            this.maSanPhamDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maSanPhamDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // soLuongDataGridViewTextBoxColumn
-            // 
-            this.soLuongDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "soLuong";
-            this.soLuongDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.soLuongDataGridViewTextBoxColumn.HeaderText = "soLuong";
-            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
-            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
-            this.soLuongDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // ngayNhapDataGridViewTextBoxColumn
-            // 
-            this.ngayNhapDataGridViewTextBoxColumn.DataPropertyName = "ngayNhap";
-            this.ngayNhapDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.ngayNhapDataGridViewTextBoxColumn.HeaderText = "ngayNhap";
-            this.ngayNhapDataGridViewTextBoxColumn.Name = "ngayNhapDataGridViewTextBoxColumn";
-            this.ngayNhapDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tongTienDataGridViewTextBoxColumn
-            // 
-            this.tongTienDataGridViewTextBoxColumn.DataPropertyName = "tongTien";
-            this.tongTienDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.tongTienDataGridViewTextBoxColumn.HeaderText = "tongTien";
-            this.tongTienDataGridViewTextBoxColumn.Name = "tongTienDataGridViewTextBoxColumn";
-            this.tongTienDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // chiTietKhoHangBindingSource3
             // 
             this.chiTietKhoHangBindingSource3.DataMember = "ChiTietKhoHang";
-            this.chiTietKhoHangBindingSource3.DataSource = this.qLBHDataSet3;
-            // 
-            // qLBHDataSet3
-            // 
-            this.qLBHDataSet3.DataSetName = "QLBHDataSet3";
-            this.qLBHDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // viewChiTietKhoHangBindingSource6
             // 
             this.viewChiTietKhoHangBindingSource6.DataMember = "viewChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource6.DataSource = this.qLBHDataSet2;
             // 
             // viewChiTietKhoHangBindingSource4
             // 
             this.viewChiTietKhoHangBindingSource4.DataMember = "viewChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource4.DataSource = this.qLBHDataSet2;
             // 
             // viewChiTietKhoHangBindingSource
             // 
@@ -388,66 +297,26 @@
             // viewChiTietKhoHangBindingSource3
             // 
             this.viewChiTietKhoHangBindingSource3.DataMember = "viewChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource3.DataSource = this.qLBHDataSet2;
-            // 
-            // viewChiTietKhoHangTableAdapter2
-            // 
-            this.viewChiTietKhoHangTableAdapter2.ClearBeforeFill = true;
             // 
             // viewChiTietKhoHangBindingSource5
             // 
             this.viewChiTietKhoHangBindingSource5.DataMember = "viewChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource5.DataSource = this.qLBHDataSet2;
-            // 
-            // sanPhamTableAdapter
-            // 
-            this.sanPhamTableAdapter.ClearBeforeFill = true;
-            // 
-            // qLBHDataSet2BindingSource
-            // 
-            this.qLBHDataSet2BindingSource.DataSource = this.qLBHDataSet2;
-            this.qLBHDataSet2BindingSource.Position = 0;
-            // 
-            // khoHangTableAdapter
-            // 
-            this.khoHangTableAdapter.ClearBeforeFill = true;
             // 
             // chiTietKhoHangBindingSource2
             // 
             this.chiTietKhoHangBindingSource2.DataMember = "ChiTietKhoHang";
-            this.chiTietKhoHangBindingSource2.DataSource = this.qLBHDataSet2;
-            // 
-            // chiTietKhoHangTableAdapter2
-            // 
-            this.chiTietKhoHangTableAdapter2.ClearBeforeFill = true;
-            // 
-            // qLBHDataSet2BindingSource1
-            // 
-            this.qLBHDataSet2BindingSource1.DataSource = this.qLBHDataSet2;
-            this.qLBHDataSet2BindingSource1.Position = 0;
             // 
             // viewChiTietKhoHangBindingSource7
             // 
             this.viewChiTietKhoHangBindingSource7.DataMember = "view_ChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource7.DataSource = this.qLBHDataSet3;
-            // 
-            // view_ChiTietKhoHangTableAdapter
-            // 
-            this.view_ChiTietKhoHangTableAdapter.ClearBeforeFill = true;
             // 
             // viewChiTietKhoHangBindingSource8
             // 
             this.viewChiTietKhoHangBindingSource8.DataMember = "view_ChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource8.DataSource = this.qLBHDataSet3;
             // 
             // viewChiTietKhoHangBindingSource9
             // 
             this.viewChiTietKhoHangBindingSource9.DataMember = "view_ChiTietKhoHang";
-            this.viewChiTietKhoHangBindingSource9.DataSource = this.qLBHDataSet3;
-            // 
-            // chiTietKhoHangTableAdapter
-            // 
-            this.chiTietKhoHangTableAdapter.ClearBeforeFill = true;
             // 
             // warehouse
             // 
@@ -463,14 +332,12 @@
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietKhoHangBindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource)).EndInit();
@@ -486,6 +353,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewChiTietKhoHangBindingSource9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSetBindingSource2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -507,18 +377,14 @@
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource1;
       
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource2;
-        private QLBHDataSet2 qLBHDataSet2;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource3;
-        private QLBHDataSet2TableAdapters.viewChiTietKhoHangTableAdapter viewChiTietKhoHangTableAdapter2;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource4;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource5;
         private System.Windows.Forms.BindingSource sanPhamBindingSource;
-        private QLBHDataSet2TableAdapters.SanPhamTableAdapter sanPhamTableAdapter;
         private System.Windows.Forms.BindingSource qLBHDataSet2BindingSource;
         private System.Windows.Forms.BindingSource khoHangBindingSource;
-        private QLBHDataSet2TableAdapters.KhoHangTableAdapter khoHangTableAdapter;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
@@ -526,24 +392,23 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingSource chiTietKhoHangBindingSource2;
-        private QLBHDataSet2TableAdapters.ChiTietKhoHangTableAdapter chiTietKhoHangTableAdapter2;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource6;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox3;
         private System.Windows.Forms.BindingSource sanPhamBindingSource1;
         private System.Windows.Forms.BindingSource qLBHDataSet2BindingSource1;
-        private QLBHDataSet3 qLBHDataSet3;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource7;
-        private QLBHDataSet3TableAdapters.view_ChiTietKhoHangTableAdapter view_ChiTietKhoHangTableAdapter;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource8;
         private System.Windows.Forms.BindingSource viewChiTietKhoHangBindingSource9;
         private System.Windows.Forms.BindingSource chiTietKhoHangBindingSource3;
-        private QLBHDataSet3TableAdapters.ChiTietKhoHangTableAdapter chiTietKhoHangTableAdapter;
+        private System.Windows.Forms.BindingSource qLBHDataSetBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn maChiTietKhoHangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maKhoHangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maSanPhamDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayNhapDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tongTienDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource qLBHDataSetBindingSource1;
+        private System.Windows.Forms.BindingSource qLBHDataSetBindingSource2;
     }
 }

@@ -33,5 +33,16 @@ namespace market_management.Properties {
                 return ((string)(this["QLBHConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
+        public string QLBHConnectionString1 {
+            get {
+                return ((string)(this["QLBHConnectionString1"]));
+            }
+        }
     }
 }

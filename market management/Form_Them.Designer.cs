@@ -40,15 +40,15 @@
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.qLBHDataSet2 = new market_management.QLBHDataSet2();
+
             this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.khoHangBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.khoHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.khoHangTableAdapter = new market_management.QLBHDataSet2TableAdapters.KhoHangTableAdapter();
-            this.sanPhamTableAdapter = new market_management.QLBHDataSet2TableAdapters.SanPhamTableAdapter();
+
+
             this.guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).BeginInit();
+    
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -186,12 +186,11 @@
             // sanPhamBindingSource
             // 
             this.sanPhamBindingSource.DataMember = "SanPham";
-            this.sanPhamBindingSource.DataSource = this.qLBHDataSet2;
+
             // 
             // qLBHDataSet2
             // 
-            this.qLBHDataSet2.DataSetName = "QLBHDataSet2";
-            this.qLBHDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // guna2ComboBox1
             // 
@@ -213,20 +212,20 @@
             // khoHangBindingSource1
             // 
             this.khoHangBindingSource1.DataMember = "KhoHang";
-            this.khoHangBindingSource1.DataSource = this.qLBHDataSet2;
+
             // 
             // khoHangBindingSource
             // 
             this.khoHangBindingSource.DataMember = "KhoHang";
-            this.khoHangBindingSource.DataSource = this.qLBHDataSet2;
+
             // 
             // khoHangTableAdapter
             // 
-            this.khoHangTableAdapter.ClearBeforeFill = true;
+
             // 
             // sanPhamTableAdapter
             // 
-            this.sanPhamTableAdapter.ClearBeforeFill = true;
+      
             // 
             // Form_Them
             // 
@@ -241,7 +240,7 @@
             this.guna2CustomGradientPanel1.ResumeLayout(false);
             this.guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoHangBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -253,11 +252,11 @@
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
-        private QLBHDataSet2 qLBHDataSet2;
+
         private System.Windows.Forms.BindingSource khoHangBindingSource;
-        private QLBHDataSet2TableAdapters.KhoHangTableAdapter khoHangTableAdapter;
+
         private System.Windows.Forms.BindingSource sanPhamBindingSource;
-        private QLBHDataSet2TableAdapters.SanPhamTableAdapter sanPhamTableAdapter;
+
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;

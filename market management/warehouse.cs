@@ -18,29 +18,68 @@ namespace market_management
         {
             InitializeComponent();
             //RefreshDataGridView();
+
         }
-
-
-
-
 
         private void warehouse_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLBHDataSet3.ChiTietKhoHang' table. You can move, or remove it, as needed.
-            this.chiTietKhoHangTableAdapter.Fill(this.qLBHDataSet3.ChiTietKhoHang);
-            // TODO: This line of code loads data into the 'qLBHDataSet3.view_ChiTietKhoHang' table. You can move, or remove it, as needed.
-            this.view_ChiTietKhoHangTableAdapter.Fill(this.qLBHDataSet3.view_ChiTietKhoHang);
-            // TODO: This line of code loads data into the 'qLBHDataSet2.ChiTietKhoHang' table. You can move, or remove it, as needed.
-            this.chiTietKhoHangTableAdapter2.Fill(this.qLBHDataSet2.ChiTietKhoHang);
-            // TODO: This line of code loads data into the 'qLBHDataSet2.KhoHang' table. You can move, or remove it, as needed.
-            this.khoHangTableAdapter.Fill(this.qLBHDataSet2.KhoHang);
-            // TODO: This line of code loads data into the 'qLBHDataSet2.SanPham' table. You can move, or remove it, as needed.
-            this.sanPhamTableAdapter.Fill(this.qLBHDataSet2.SanPham);
-           
+            // Connection string (replace with your actual connection details)
+            string connectionString = "Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
 
-            this.ControlBox = false;
+                    // Load tenKhoHang into guna2ComboBox2
+                    string queryKhoHang = "SELECT tenKhoHang FROM KhoHang";
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(queryKhoHang, connection))
+                    {
+                        DataTable khoHangTable = new DataTable();
+                        adapter.Fill(khoHangTable);
+                        guna2ComboBox2.DataSource = khoHangTable;
+                        guna2ComboBox2.DisplayMember = "tenKhoHang";
+                        guna2ComboBox2.ValueMember = "tenKhoHang";
+                    }
+
+                    // Load tenSanPham into guna2ComboBox3
+                    string querySanPham = "SELECT tenSanPham FROM SanPham";
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(querySanPham, connection))
+                    {
+                        DataTable sanPhamTable = new DataTable();
+                        adapter.Fill(sanPhamTable);
+                        guna2ComboBox3.DataSource = sanPhamTable;
+                        guna2ComboBox3.DisplayMember = "tenSanPham";
+                        guna2ComboBox3.ValueMember = "tenSanPham";
+                    }
+
+                    // Load ChiTietKhoHang into dataGridView1
+                    string queryChiTietKhoHang = @"
+                SELECT ctkh.maChiTietKhoHang, 
+                       kh.tenKhoHang, 
+                       sp.tenSanPham, 
+                       ctkh.ngayNhap, 
+                       ctkh.soLuong, 
+                       ctkh.tongTien
+                FROM ChiTietKhoHang ctkh
+                INNER JOIN KhoHang kh ON ctkh.maKhoHang = kh.maKhoHang
+                INNER JOIN SanPham sp ON ctkh.maSanPham = sp.maSanPham";
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(queryChiTietKhoHang, connection))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dataGridView1.DataSource = dataTable;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+
+
         // Warehouse.cs
         public void RefreshDataGridView()
         {
