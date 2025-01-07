@@ -45,6 +45,12 @@
             this.sanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.maChiTietKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSanPhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tongTienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chiTietKhoHangBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.qLBHDataSet3 = new market_management.QLBHDataSet3();
             this.viewChiTietKhoHangBindingSource6 = new System.Windows.Forms.BindingSource(this.components);
@@ -68,12 +74,6 @@
             this.viewChiTietKhoHangBindingSource8 = new System.Windows.Forms.BindingSource(this.components);
             this.viewChiTietKhoHangBindingSource9 = new System.Windows.Forms.BindingSource(this.components);
             this.chiTietKhoHangTableAdapter = new market_management.QLBHDataSet3TableAdapters.ChiTietKhoHangTableAdapter();
-            this.maChiTietKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maKhoHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSanPhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tongTienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLBHDataSet2)).BeginInit();
@@ -269,6 +269,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -283,8 +285,65 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(907, 438);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // maChiTietKhoHangDataGridViewTextBoxColumn
+            // 
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maChiTietKhoHang";
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.FillWeight = 152.2843F;
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.HeaderText = "maChiTietKhoHang";
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.Name = "maChiTietKhoHangDataGridViewTextBoxColumn";
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maChiTietKhoHangDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // maKhoHangDataGridViewTextBoxColumn
+            // 
+            this.maKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.maKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maKhoHang";
+            this.maKhoHangDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.maKhoHangDataGridViewTextBoxColumn.HeaderText = "maKhoHang";
+            this.maKhoHangDataGridViewTextBoxColumn.Name = "maKhoHangDataGridViewTextBoxColumn";
+            this.maKhoHangDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maKhoHangDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // maSanPhamDataGridViewTextBoxColumn
+            // 
+            this.maSanPhamDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.maSanPhamDataGridViewTextBoxColumn.DataPropertyName = "maSanPham";
+            this.maSanPhamDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.maSanPhamDataGridViewTextBoxColumn.HeaderText = "maSanPham";
+            this.maSanPhamDataGridViewTextBoxColumn.Name = "maSanPhamDataGridViewTextBoxColumn";
+            this.maSanPhamDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maSanPhamDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // soLuongDataGridViewTextBoxColumn
+            // 
+            this.soLuongDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "soLuong";
+            this.soLuongDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.soLuongDataGridViewTextBoxColumn.HeaderText = "soLuong";
+            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
+            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
+            this.soLuongDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // ngayNhapDataGridViewTextBoxColumn
+            // 
+            this.ngayNhapDataGridViewTextBoxColumn.DataPropertyName = "ngayNhap";
+            this.ngayNhapDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.ngayNhapDataGridViewTextBoxColumn.HeaderText = "ngayNhap";
+            this.ngayNhapDataGridViewTextBoxColumn.Name = "ngayNhapDataGridViewTextBoxColumn";
+            this.ngayNhapDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tongTienDataGridViewTextBoxColumn
+            // 
+            this.tongTienDataGridViewTextBoxColumn.DataPropertyName = "tongTien";
+            this.tongTienDataGridViewTextBoxColumn.FillWeight = 89.54315F;
+            this.tongTienDataGridViewTextBoxColumn.HeaderText = "tongTien";
+            this.tongTienDataGridViewTextBoxColumn.Name = "tongTienDataGridViewTextBoxColumn";
+            this.tongTienDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // chiTietKhoHangBindingSource3
             // 
@@ -389,57 +448,6 @@
             // chiTietKhoHangTableAdapter
             // 
             this.chiTietKhoHangTableAdapter.ClearBeforeFill = true;
-            // 
-            // maChiTietKhoHangDataGridViewTextBoxColumn
-            // 
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maChiTietKhoHang";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.FillWeight = 152.2843F;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.HeaderText = "maChiTietKhoHang";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.Name = "maChiTietKhoHangDataGridViewTextBoxColumn";
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maChiTietKhoHangDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // maKhoHangDataGridViewTextBoxColumn
-            // 
-            this.maKhoHangDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maKhoHangDataGridViewTextBoxColumn.DataPropertyName = "maKhoHang";
-            this.maKhoHangDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.maKhoHangDataGridViewTextBoxColumn.HeaderText = "maKhoHang";
-            this.maKhoHangDataGridViewTextBoxColumn.Name = "maKhoHangDataGridViewTextBoxColumn";
-            this.maKhoHangDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // maSanPhamDataGridViewTextBoxColumn
-            // 
-            this.maSanPhamDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maSanPhamDataGridViewTextBoxColumn.DataPropertyName = "maSanPham";
-            this.maSanPhamDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.maSanPhamDataGridViewTextBoxColumn.HeaderText = "maSanPham";
-            this.maSanPhamDataGridViewTextBoxColumn.Name = "maSanPhamDataGridViewTextBoxColumn";
-            this.maSanPhamDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // soLuongDataGridViewTextBoxColumn
-            // 
-            this.soLuongDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "soLuong";
-            this.soLuongDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.soLuongDataGridViewTextBoxColumn.HeaderText = "soLuong";
-            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
-            this.soLuongDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // ngayNhapDataGridViewTextBoxColumn
-            // 
-            this.ngayNhapDataGridViewTextBoxColumn.DataPropertyName = "ngayNhap";
-            this.ngayNhapDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.ngayNhapDataGridViewTextBoxColumn.HeaderText = "ngayNhap";
-            this.ngayNhapDataGridViewTextBoxColumn.Name = "ngayNhapDataGridViewTextBoxColumn";
-            // 
-            // tongTienDataGridViewTextBoxColumn
-            // 
-            this.tongTienDataGridViewTextBoxColumn.DataPropertyName = "tongTien";
-            this.tongTienDataGridViewTextBoxColumn.FillWeight = 89.54315F;
-            this.tongTienDataGridViewTextBoxColumn.HeaderText = "tongTien";
-            this.tongTienDataGridViewTextBoxColumn.Name = "tongTienDataGridViewTextBoxColumn";
             // 
             // warehouse
             // 

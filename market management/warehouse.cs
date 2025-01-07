@@ -36,10 +36,7 @@ namespace market_management
             this.khoHangTableAdapter.Fill(this.qLBHDataSet2.KhoHang);
             // TODO: This line of code loads data into the 'qLBHDataSet2.SanPham' table. You can move, or remove it, as needed.
             this.sanPhamTableAdapter.Fill(this.qLBHDataSet2.SanPham);
-            // TODO: This line of code loads data into the 'qLBHDataSet2.viewChiTietKhoHang' table. You can move, or remove it, as needed.
-            //this.viewChiTietKhoHangTableAdapter2.Fill(this.qLBHDataSet3.view_ChiTietKhoHang);
-            // TODO: This line of code loads data into the 'qLBHDataSet1.viewChiTietKhoHang' table. You can move, or remove it, as needed.
-            // TODO: This line of code loads data into the 'qLBHDataSet1.ChiTietKhoHang' table. You can move, or remove it, as needed.
+           
 
 
             this.ControlBox = false;
@@ -51,7 +48,7 @@ namespace market_management
 
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=HUY;Initial Catalog=QLBH;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;"))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -104,7 +101,7 @@ namespace market_management
                 var tenKhoHang = selectedRow1["tenKhoHang"]; // Thay đổi tên cột tương ứng với cột bạn cần
                 var tenSanPham = selectedRow2["tenSanPham"]; // Thay đổi tên cột tương ứng với cột bạn cần
                 // Mở kết nối và gọi stored procedure để truy vấn dữ liệu
-                using (SqlConnection conn = new SqlConnection("Data Source=HUY;Initial Catalog=QLBH;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;"))
                 {
                     conn.Open();
 
@@ -168,7 +165,7 @@ namespace market_management
                 try
                 {
                     // Connect to the database
-                    using (SqlConnection conn = new SqlConnection("Data Source=HUY;Initial Catalog=QLBH;Integrated Security=True;"))
+                    using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;"))
                     {
                         conn.Open();
 

@@ -13,7 +13,7 @@ namespace market_management
 {
     public partial class sale : Form
     {
-        string connectionString = "Data Source=DESKTOP-UL53I9J;Initial Catalog=QLBH;Integrated Security=True;";
+        string connectionString = "Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;";
 
         int maKhachHang = 0;  // Lưu mã khách hàng
         int maDonHang = 0;    // Lưu mã đơn hàng
