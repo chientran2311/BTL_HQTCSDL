@@ -318,6 +318,7 @@
             this.IsMdiContainer = true;
             this.Name = "dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "S";
             this.Load += new System.EventHandler(this.dashboard_Load);
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hide)).EndInit();
