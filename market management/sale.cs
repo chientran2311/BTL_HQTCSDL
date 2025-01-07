@@ -476,48 +476,31 @@ namespace market_management
                 {
                     conn.Open();
 
-                    // Lấy phần trăm giảm giá từ mã khuyến mãi
-                    string queryDiscount = @"
-                SELECT phanTramGiamGia
-                FROM KhuyenMai
-                WHERE maKhuyenMai = @maKhuyenMai;";
+                    // Gọi function tính tổng tiền sau khi áp dụng mã khuyến mãi
+                    string queryDiscountedTotal = @"
+                SELECT dbo.fn_TinhTienSauKhuyenMai(@maDonHang, @maKhuyenMai)";
 
-                    SqlCommand cmdDiscount = new SqlCommand(queryDiscount, conn);
-                    cmdDiscount.Parameters.AddWithValue("@maKhuyenMai", txtMaKhuyenMai.Text);
+                    SqlCommand cmdDiscountedTotal = new SqlCommand(queryDiscountedTotal, conn);
+                    cmdDiscountedTotal.Parameters.AddWithValue("@maDonHang", maDonHang);
+                    cmdDiscountedTotal.Parameters.AddWithValue("@maKhuyenMai", txtMaKhuyenMai.Text);
 
-                    object discountResult = cmdDiscount.ExecuteScalar();
+                    object result = cmdDiscountedTotal.ExecuteScalar();
 
-                    // Nếu mã khuyến mãi không tồn tại
-                    if (discountResult == null)
+                    // Nếu mã khuyến mãi không hợp lệ (kết quả trả về = 0)
+                    if (result == null || Convert.ToDecimal(result) == 0)
                     {
                         MessageBox.Show("Mã khuyến mãi không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    // Lấy phần trăm giảm giá
-                    decimal phanTramGiamGia = Convert.ToDecimal(discountResult);
-
-                    // Tính lại tổng tiền sau khi giảm giá
-                    string queryTongTien = @"
-                SELECT SUM(spd.soLuong * sp.giaBanSanPham)
-                FROM SP_DonHang spd
-                JOIN SanPham sp ON spd.maSanPham = sp.maSanPham
-                WHERE spd.maDonHang = @maDonHang;";
-
-                    SqlCommand cmdTongTien = new SqlCommand(queryTongTien, conn);
-                    cmdTongTien.Parameters.AddWithValue("@maDonHang", maDonHang);
-
-                    object result = cmdTongTien.ExecuteScalar();
-                    decimal tongTien = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
-
-                    // Áp dụng giảm giá
-                    decimal tongTienSauGiam = tongTien - (tongTien * phanTramGiamGia / 100);
+                    // Lấy tổng tiền sau giảm giá
+                    decimal tongTienSauGiam = Convert.ToDecimal(result);
 
                     // Cập nhật lại tổng tiền trong cơ sở dữ liệu (cập nhật vào bảng DonHang)
                     string updateQuery = @"
                 UPDATE DonHang
                 SET thanhTien = @thanhTien
-                WHERE maDonHang = @maDonHang;";
+                WHERE maDonHang = @maDonHang";
 
                     SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn);
                     cmdUpdate.Parameters.AddWithValue("@thanhTien", tongTienSauGiam);
@@ -535,6 +518,7 @@ namespace market_management
                 MessageBox.Show("Lỗi khi áp dụng mã khuyến mãi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }

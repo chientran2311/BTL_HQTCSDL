@@ -137,19 +137,51 @@ select * from KhachHang
 
 delete from DonHang where maDonHang = 6
 
-
-CREATE VIEW vw_SanPham_DonHang AS
+--------------------------------------------------------------View-------------------------------------------------------------------------
+CREATE VIEW view_Top5SanPhamBanChay AS
 SELECT 
-    sp.maSanPham AS [Mã SP],
-    sp.tenSanPham AS [Tên SP],
-    spd.soLuong AS [Số lượng],
-    sp.giaBanSanPham AS [Giá bán sản phẩm],
-    (spd.soLuong * sp.giaBanSanPham) AS [Thành tiền]
+    sp.maSanPham,
+    sp.tenSanPham,
+    SUM(spd.soLuong) AS TongSoLuongBan
 FROM 
-    SP_DonHang spd
+    SanPham sp
 JOIN 
-    SanPham sp ON spd.maSanPham = sp.maSanPham;
+    SP_DonHang spd ON sp.maSanPham = spd.maSanPham
+JOIN 
+    DonHang dh ON spd.maDonHang = dh.maDonHang
+WHERE 
+    YEAR(dh.NgayTaoDon) = YEAR(GETDATE())
+GROUP BY 
+    sp.maSanPham, sp.tenSanPham
+ORDER BY 
+    TongSoLuongBan DESC
+OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
+CREATE VIEW view_Top5KhachHangMuaHangNhieuNhat AS
+SELECT TOP 5
+    kh.maKhachhang,
+    kh.tenKhachhang,
+    kh.soDienThoai,
+    kh.email,
+    SUM(dh.thanhTien) AS TongTienMuaHang
+FROM 
+    DonHang dh
+JOIN 
+    KhachHang kh ON dh.maKhachHang = kh.maKhachhang
+WHERE 
+    dh.Ngaytaodon >= DATEADD(YEAR, -1, GETDATE())
+GROUP BY 
+    kh.maKhachhang, kh.tenKhachhang, kh.soDienThoai, kh.email
+ORDER BY 
+    TongTienMuaHang DESC;
+
+select * from view_Top5KhachHangMuaHangNhieuNhat
+
+
+
+select * from view_KhachHangDonHang
+
+--------------------------------------------------------------Trigger-------------------------------------------------------------------------
 
 CREATE TRIGGER trig_UpdateThanhTien
 ON SP_DonHang
@@ -160,6 +192,7 @@ BEGIN
 
     IF EXISTS(SELECT * FROM inserted)
         SELECT @maDonHang = maDonHang FROM inserted
+
     ELSE
         SELECT @maDonHang = maDonHang FROM deleted
 
@@ -173,31 +206,126 @@ BEGIN
     WHERE maDonHang = @maDonHang
 END
 
-CREATE TRIGGER trg_CapNhatSanPhamDaBan
+CREATE TRIGGER trig_UpdateSLSanPham	
 ON SP_DonHang
-AFTER INSERT, update
+AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    UPDATE sp
-    SET sp.slSanPhamDaBan = sp.slSanPhamDaBan + i.soLuong
-    FROM SanPham sp
-    JOIN inserted i ON sp.maSanPham = i.maSanPham;
+    IF EXISTS (SELECT * FROM inserted)
+    BEGIN
+        UPDATE sp
+        SET 
+            sp.slSanPhamDaBan = sp.slSanPhamDaBan + i.soLuong,
+            sp.slSanPhamTonKho = sp.slSanPhamTonKho - i.soLuong
+        FROM SanPham sp
+        JOIN inserted i ON sp.maSanPham = i.maSanPham;
+
+        IF EXISTS (
+            SELECT 1
+            FROM SanPham sp
+            JOIN inserted i ON sp.maSanPham = i.maSanPham
+            WHERE sp.slSanPhamTonKho < 0
+        )
+        BEGIN
+            RAISERROR ('Số lượng tồn kho không đủ.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+    END
+
+    IF EXISTS (SELECT * FROM deleted)
+    BEGIN
+        UPDATE sp
+        SET 
+            sp.slSanPhamDaBan = sp.slSanPhamDaBan - d.soLuong,
+            sp.slSanPhamTonKho = sp.slSanPhamTonKho + d.soLuong
+        FROM SanPham sp
+        JOIN deleted d ON sp.maSanPham = d.maSanPham;
+
+        IF EXISTS (
+            SELECT 1
+            FROM SanPham sp
+            JOIN deleted d ON sp.maSanPham = d.maSanPham
+            WHERE sp.slSanPhamDaBan < 0
+        )
+        BEGIN
+            RAISERROR ('Số lượng đã bán không hợp lệ.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+    END
 END;
 
 
-select * from DonHang
+--------------------------------------------------------------Function-------------------------------------------------------------------------
 
-CREATE FUNCTION fn_DemSanPhamTonKho()
-RETURNS INT
+CREATE FUNCTION func_DonHangKhachHang(@soDienThoai VARCHAR(15))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+        dh.maDonHang,
+        dh.Ngaytaodon,
+        dh.thanhTien,
+        dh.hinhThucThanhToan,
+        dh.ghiChu,
+        kh.tenKhachhang,
+        kh.soDienThoai
+    FROM 
+        DonHang dh
+    JOIN 
+        KhachHang kh ON dh.maKhachHang = kh.maKhachhang
+    WHERE 
+        kh.soDienThoai = @soDienThoai
+);
+
+select * from dbo.fn_DonHangKhachHang('1')
+
+CREATE FUNCTION func_TinhTienSauKhuyenMai
+(
+    @maDonHang INT,
+    @maKhuyenMai VARCHAR(50)
+)
+RETURNS DECIMAL(18, 2)
 AS
 BEGIN
-    DECLARE @soLuongTonKho INT;
-    SELECT @soLuongTonKho = SUM(slSanPhamTonKho)
-    FROM SanPham;
-    RETURN @soLuongTonKho;
+    DECLARE @tongTien DECIMAL(18, 2);
+    DECLARE @phanTramGiamGia DECIMAL(5, 2);
+
+    SELECT @phanTramGiamGia = phanTramGiamGia
+    FROM KhuyenMai
+    WHERE maKhuyenMai = @maKhuyenMai;
+
+    IF @phanTramGiamGia IS NULL
+    BEGIN
+        RETURN 0;
+    END
+
+    SELECT @tongTien = SUM(spd.soLuong * sp.giaBanSanPham)
+    FROM SP_DonHang spd
+    JOIN SanPham sp ON spd.maSanPham = sp.maSanPham
+    WHERE spd.maDonHang = @maDonHang;
+
+    RETURN (@tongTien - (@tongTien * @phanTramGiamGia / 100));
 END;
 
-CREATE FUNCTION fn_SanPhamHetHang()
+
+CREATE FUNCTION func_Top5SanPhamBanChayNhat()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT TOP 5 sp.maSanPham, sp.tenSanPham, SUM(spd.soLuong) AS tongSoLuong
+    FROM SP_DonHang spd
+    JOIN SanPham sp ON spd.maSanPham = sp.maSanPham
+    GROUP BY sp.maSanPham, sp.tenSanPham
+    ORDER BY tongSoLuong DESC
+);
+
+select * from dbo.func_SanPhamBanChayNhat()
+
+CREATE FUNCTION func_SanPhamHetHang()
 RETURNS @SanPhamHetHang TABLE (
     maSanPham INT,
     tenSanPham NVARCHAR(255)
@@ -229,49 +357,170 @@ BEGIN
     RETURN;
 END;
 
-CREATE PROCEDURE sp_CapNhatSoLuongSP
-    @maSanPham INT, 
-    @soLuongMoi INT
+select * from dbo.func_SanPhamConTrongKho()
+--------------------------------------------------------------Procedure-------------------------------------------------------------------------
+
+CREATE PROCEDURE sp_KhachHangThanThiet
+    @nam INT 
 AS
 BEGIN
-    UPDATE SanPham
-    SET slSanPhamTonKho = @soLuongMoi
-    WHERE maSanPham = @maSanPham;
+    SET NOCOUNT ON;
+
+    SELECT 
+        kh.maKhachHang,
+        kh.tenKhachHang,
+        kh.soDienThoai,
+        kh.email,
+        COUNT(dh.maDonHang) AS TongSoDonHang,
+        SUM(spd.soLuong * sp.giaBanSanPham) AS TongDoanhThu
+    FROM 
+        KhachHang kh
+    JOIN 
+        DonHang dh ON kh.maKhachHang = dh.maKhachHang
+    JOIN 
+        SP_DonHang spd ON dh.maDonHang = spd.maDonHang
+    JOIN 
+        SanPham sp ON spd.maSanPham = sp.maSanPham
+    WHERE 
+        YEAR(dh.NgayTaoDon) = @nam 
+    GROUP BY 
+        kh.maKhachHang, kh.tenKhachHang, kh.soDienThoai, kh.email
+    HAVING 
+        SUM(spd.soLuong * sp.giaBanSanPham) > 10000000 
+    ORDER BY 
+        TongDoanhThu DESC; 
 END;
 
-CREATE PROCEDURE sp_CapNhatLuongNhanVien
-    @maNhanvien INT,
-    @luongMoi FLOAT
+
+exec sp_KhachHangThanThiet 2023
+
+CREATE PROCEDURE sp_TinhTongDoanhThu
+    @NgayBatDau DATE, 
+    @NgayKetThuc DATE 
 AS
 BEGIN
-    UPDATE NhanVien
-    SET Luong = @luongMoi
-    WHERE maNhanvien = @maNhanvien;
-END;
+    SET NOCOUNT ON;
 
-CREATE FUNCTION func_TongDoanhThu()
-RETURNS BIGINT
-AS
+    SELECT 
+        SUM(thanhTien) AS TongDoanhThu
+    FROM 
+        DonHang
+    WHERE 
+        Ngaytaodon BETWEEN @NgayBatDau AND @NgayKetThuc;
+END
+
+--------------------------------------------------------------Cursor-------------------------------------------------------------------------
+
+----Cur1----
+
+DECLARE @maKhachHang INT
+DECLARE @maDonHang INT
+DECLARE @doanhThu DECIMAL(18, 2)
+
+DECLARE cur_DoanhThuKhachHang CURSOR FOR
+SELECT DISTINCT dh.maKhachHang
+FROM DonHang dh
+WHERE dh.Ngaytaodon BETWEEN '2024-01-01' AND '2024-12-31'
+
+OPEN cur_DoanhThuKhachHang
+
+FETCH NEXT FROM cur_DoanhThuKhachHang INTO @maKhachHang
+
+WHILE @@FETCH_STATUS = 0
 BEGIN
-    DECLARE @doanhThu BIGINT;
-    SELECT @doanhThu = SUM(thanhTien)
-    FROM DonHang;
-    RETURN @doanhThu;
-END;
+    SELECT @doanhThu = ISNULL(SUM(dh.thanhTien), 0)
+    FROM DonHang dh
+    WHERE dh.maKhachHang = @maKhachHang
+    AND dh.Ngaytaodon BETWEEN '2024-01-01' AND '2024-12-31'
 
-CREATE VIEW view_KhachHangDonHang AS
+    PRINT N'Khách hàng ID: ' + CAST(@maKhachHang AS NVARCHAR(10)) 
+	+ N' có tổng tiền đã mua trong năm 2024 là: ' + CAST(@doanhThu AS NVARCHAR(18))
+
+    FETCH NEXT FROM cur_DoanhThuKhachHang INTO @maKhachHang
+END
+
+CLOSE cur_DoanhThuKhachHang
+DEALLOCATE cur_DoanhThuKhachHang
+
+
+
+----Cur2----
+DECLARE @maSanPham INT
+DECLARE @slTonKho INT
+DECLARE @trangThaiSanPham BIT
+
+DECLARE @MaspInput TABLE (maSanPham INT)
+
+INSERT INTO @MaspInput (maSanPham)
+VALUES (1), (2)
+
+DECLARE cur_CheckSanPham CURSOR FOR
+SELECT maSanPham
+FROM @MaspInput
+
+OPEN cur_CheckSanPham
+
+FETCH NEXT FROM cur_CheckSanPham INTO @maSanPham
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    SELECT @slTonKho = slSanPhamTonKho, @trangThaiSanPham = trangThaiSanPham
+    FROM SanPham
+    WHERE maSanPham = @maSanPham
+
+    IF @slTonKho > 0 AND @trangThaiSanPham = 0
+    BEGIN
+        PRINT N'Sản phẩm ID: ' + CAST(@maSanPham AS NVARCHAR(10)) + N' vẫn còn hàng nhưng đã ngừng kinh doanh.'
+    END
+
+    ELSE IF @slTonKho = 0
+    BEGIN
+        UPDATE SanPham
+        SET trangThaiSanPham = 0
+        WHERE maSanPham = @maSanPham
+
+        PRINT N'Sản phẩm ID: ' + CAST(@maSanPham AS NVARCHAR(10)) + N' đã ngừng bán do hết hàng.'
+    END
+
+    ELSE
+		BEGIN
+			UPDATE SanPham
+			SET trangThaiSanPham = 1
+			WHERE maSanPham = @maSanPham
+
+			PRINT N'Sản phẩm ID: ' + CAST(@maSanPham AS NVARCHAR(10)) + N' vẫn đang bán.'
+		END
+
+    FETCH NEXT FROM cur_CheckSanPham INTO @maSanPham
+END
+
+CLOSE cur_CheckSanPham
+DEALLOCATE cur_CheckSanPham
+
+
+
+
+--------------------------------------------------------------DB Insert-------------------------------------------------------------------------
+
+-- Khách hàng 1: Nguyễn Văn A (50 đơn hàng, mỗi tháng ít nhất 1 đơn)
+INSERT INTO DonHang (maKhachHang, thanhTien, hinhThucThanhToan, ghiChu, maNhanVien, maKhuyenMai, Ngaytaodon)
 SELECT 
-    kh.maKhachhang,
-    kh.tenKhachhang,
-    dh.maDonHang,
-    dh.thanhTien,
-    dh.Ngaytaodon
-FROM KhachHang kh
-LEFT JOIN DonHang dh ON kh.maKhachhang = dh.maKhachHang;
+    1, 1000000, N'Tiền mặt', N'Mua hàng', 1, NULL, DATEADD(MONTH, (number % 12), '2023-01-01')
+FROM 
+    master.dbo.spt_values
+WHERE 
+    type = 'P' AND number BETWEEN 1 AND 50;
 
+-- Khách hàng 2: Trần Thị B (35 đơn hàng, mỗi tháng ít nhất 1 đơn)
+INSERT INTO DonHang (maKhachHang, thanhTien, hinhThucThanhToan, ghiChu, maNhanVien, maKhuyenMai, Ngaytaodon)
+SELECT 
+    2, 800000, N'Chuyển khoản', N'Khách VIP', 2, NULL, DATEADD(MONTH, (number % 12), '2023-01-01')
+FROM 
+    master.dbo.spt_values
+WHERE 
+    type = 'P' AND number BETWEEN 1 AND 35;
 
-use QLBH;
-
+select * from DonHang
 
 
 
