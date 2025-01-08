@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,10 +23,35 @@ namespace market_management
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLBHDataSet2.SanPham' table. You can move, or remove it, as needed.
- 
+            string connectionString = "Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;";
 
+            // Load maKhoHang vào guna2ComboBox1
+            string queryKhoHang = "SELECT maKhoHang, tenKhoHang FROM KhoHang";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(queryKhoHang, connection);
+                DataTable khoHangTable = new DataTable();
+                adapter.Fill(khoHangTable);
+
+                guna2ComboBox1.DataSource = khoHangTable;
+                guna2ComboBox1.DisplayMember = "tenKhoHang";  // Hiển thị tên kho
+                guna2ComboBox1.ValueMember = "maKhoHang";    // Lưu giá trị là maKhoHang
+            }
+
+            // Load tenSanPham vào guna2ComboBox2
+            string querySanPham = "SELECT maSanPham, tenSanPham FROM SanPham";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(querySanPham, connection);
+                DataTable sanPhamTable = new DataTable();
+                adapter.Fill(sanPhamTable);
+
+                guna2ComboBox2.DataSource = sanPhamTable;
+                guna2ComboBox2.DisplayMember = "tenSanPham";  // Hiển thị tên sản phẩm
+                guna2ComboBox2.ValueMember = "maSanPham";    // Lưu giá trị là maSanPham
+            }
         }
+
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
@@ -56,7 +82,7 @@ namespace market_management
                 if (int.TryParse(guna2TextBox1.Text, out soLuong))
                 {
                     // Mở kết nối và gọi Stored Procedure để thêm dữ liệu
-                    using (SqlConnection conn = new SqlConnection("Data Source=HUY;Initial Catalog=QLBH;Integrated Security=True;"))
+                    using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-AQT03QH\\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True;"))
                     {
                         conn.Open();
 
