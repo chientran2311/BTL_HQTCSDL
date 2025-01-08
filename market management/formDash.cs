@@ -52,7 +52,7 @@ namespace market_management
             }
 
             // Câu lệnh SQL để tính tổng tiền hàng đã nhập theo tháng
-            string query = "SELECT SUM(tongTien) FROM KhoHang WHERE DATEPART(MM, ngay) = @Month";
+            string query = "SELECT SUM(tongTien) FROM ChiTietKhoHang WHERE DATEPART(MM, ngayNhap) = @Month";
 
             // Chuỗi kết nối cơ sở dữ liệu
             string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
@@ -85,7 +85,7 @@ namespace market_management
                 }
             }
         }
-        public void tinhDoanhthuthang()
+        public void TinhDoanhThuTheoThang()
         {
             // Chuỗi kết nối tới cơ sở dữ liệu
             string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
@@ -98,8 +98,7 @@ namespace market_management
             }
 
             // Chuyển giá trị từ ComboBox sang kiểu int
-            int month;
-            if (!int.TryParse(cb_month.SelectedItem.ToString(), out month))
+            if (!int.TryParse(cb_month.SelectedItem.ToString(), out int month))
             {
                 MessageBox.Show("Tháng không hợp lệ. Vui lòng chọn lại.");
                 return;
@@ -113,7 +112,7 @@ namespace market_management
                     // Mở kết nối
                     connection.Open();
 
-                    // Tạo câu lệnh SQL để gọi function
+                    // Tạo câu lệnh SQL để gọi hàm
                     string query = "SELECT dbo.TinhDoanhThuTheoThang(@Month)";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -127,7 +126,10 @@ namespace market_management
                         // Kiểm tra kết quả trả về và hiển thị
                         if (result != null && result != DBNull.Value)
                         {
+                            // Chuyển đổi kết quả sang kiểu decimal
                             decimal doanhThu = Convert.ToDecimal(result);
+
+                            // Hiển thị doanh thu trong TextBox (txtDoanhThu)
                             txtDoanhThu.Text = doanhThu.ToString("N2"); // Hiển thị dạng số thập phân
                         }
                         else
@@ -137,12 +139,18 @@ namespace market_management
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                // Thông báo lỗi liên quan đến SQL
+                MessageBox.Show("Lỗi cơ sở dữ liệu: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                // Hiển thị thông báo lỗi nếu có lỗi xảy ra
+                // Thông báo lỗi chung
                 MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
             }
         }
+
 
         public void Tienhangban()
         {
@@ -470,13 +478,16 @@ namespace market_management
 
         private void btnKetToan_Click(object sender, EventArgs e)
         {
-            tinhDoanhthuthang();
+            TinhDoanhThuTheoThang();
             TopNhanVien();
             Top3SanPham();
             thongkeHinhthuc();
             
         }
 
-       
+        private void tableNhanvien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

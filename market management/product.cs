@@ -44,7 +44,7 @@ namespace market_management
         {
             //guna2DataGridView1.AutoGenerateColumns = false;
 
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
             SqlConnection sqlCon = null;
             //string query = "select maSanPham, tenSanPham, giaNhapSanPham, giaBanSanPham, slSanPhamTonKho, slSanPhamDaBan, trangThaiSanPham from SanPham";
@@ -94,7 +94,7 @@ namespace market_management
 
         private void FetchBestSellingProducts(DateTime startDate, DateTime endDate)
         {
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
             //
             try
             {
@@ -178,7 +178,7 @@ namespace market_management
         }
         private void LoadProductList()
         {
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
             string query = "SELECT * FROM SanPham";
 
             try
@@ -200,7 +200,7 @@ namespace market_management
         private void guna2Button7_Click(object sender, EventArgs e)
         {
             // Chuỗi kết nối tới cơ sở dữ liệu
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
             // Truy vấn để lấy dữ liệu từ View vw_SanPhamDoanhThu
             string query = "SELECT * FROM vw_SanPhamDoanhThu";
             //
@@ -245,7 +245,7 @@ namespace market_management
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             // Chuỗi kết nối tới cơ sở dữ liệu
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
             // Truy vấn dữ liệu từ View vw_DonHangKhachHangNhanVien
             string query = "SELECT * FROM vw_DonHangKhachHangNhanVien";
@@ -299,7 +299,7 @@ namespace market_management
         private void guna2Button4_Click(object sender, EventArgs e)
         {
             // Chuỗi kết nối đến cơ sở dữ liệu
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
             // Lấy thông tin từ giao diện 
             int maKhoHang = int.Parse(guna2TextBox1.Text); // TextBox chứa mã kho hàng
@@ -352,7 +352,7 @@ namespace market_management
             int maDonHang = int.Parse(guna2TextBox2.Text); // Đảm bảo có TextBox để nhập mã đơn hàng
 
             // Chuỗi kết nối tới cơ sở dữ liệu
-            string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+            string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
             try
             {
@@ -387,7 +387,7 @@ namespace market_management
                 int soLuong = (int)guna2NumericUpDown1.Value; // Số lượng nhập từ NumericUpDown
 
                 // Chuỗi kết nối cơ sở dữ liệu
-                string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+                string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
                 using (SqlConnection connection = new SqlConnection(strCon))
                 {
@@ -438,7 +438,7 @@ namespace market_management
                 int maSanPham = int.Parse(guna2TextBox2.Text);
 
                 // Chuỗi kết nối đến cơ sở dữ liệu
-                string strCon = @"Data Source=LAPTOP-MT7690JJ\SQLEXPRESS;Initial Catalog=btck_csdl_qlbh;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+                string strCon = @"Data Source=DESKTOP-AQT03QH\SQLEXPRESS;Initial Catalog=QLBH;Integrated Security=True";
 
                 using (SqlConnection connection = new SqlConnection(strCon))
                 {
